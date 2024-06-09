@@ -12,7 +12,7 @@ Route::get('/welcome', function () {
 
 Route::get('/', [homeController::class, 'index']);
 
-Route::get('/login', [loginController::class, 'index']);
+Route::get('/login', [loginController::class, 'index'])->name('login');
 Route::get('/register', [registerController::class, 'index']);
 Route::get('/checkout', [checkoutController::class, 'index']);
 

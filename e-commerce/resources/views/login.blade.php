@@ -31,13 +31,13 @@
                                 <div class="mb-4 text-start text-white">
                                     <label class="form-label" for="typeEmailX">Email</label>
                                     <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <small class="text-danger">Enter a valid email</small>
                                 </div>
 
                                 <div class="mb-4 text-start text-white">
                                     <label class="form-label" for="typePasswordX">Password</label>
                                     <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <small class="text-danger">Enter your password</small>
                                 </div>
 
                                 <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
