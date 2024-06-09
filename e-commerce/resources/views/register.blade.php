@@ -24,83 +24,102 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                            <form>
+                            <form action="{{ url('/register') }}" method="POST">
+                                @csrf
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="form3Example1cg">Username</label>
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <label class="form-label" for="username">Username</label>
+                                    <input type="text" id="username" name="username" class="form-control form-control-lg" required />
+                                    @error('username')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="form3Example3cg">Email</label>
-                                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control form-control-lg" required />
+                                    @error('email')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="form3Example4cg">Password</label>
-                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <label class="form-label" for="password">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" required />
+                                    @error('password')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <label class="form-label" for="password_confirmation">Repeat your password</label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg" required />
+                                    @error('password_confirmation')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="form3Example3cg">Phone Number</label>
-                                    <input type="phone_number" id="form3Example3cg" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
-                                </div>
-                                <div class="mb-4 text-white">
-                                    <label class="form-label" for="form3Example4cg">Pin</label>
-                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <label class="form-label" for="phone_number">Phone Number</label>
+                                    <input type="text" id="phone_number" name="phone_number" class="form-control form-control-lg" required />
+                                    @error('phone_number')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="form3Example4cdg">Repeat your pin</label>
-                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                                    <small class="text-danger">INI UTK ERROR MSG</small>
+                                    <label class="form-label" for="pin">Pin</label>
+                                    <input type="password" id="pin" name="pin" class="form-control form-control-lg" required />
+                                    @error('pin')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-4 text-white">
+                                    <label class="form-label" for="pin_confirmation">Repeat your pin</label>
+                                    <input type="password" id="pin_confirmation" name="pin_confirmation" class="form-control form-control-lg" required />
+                                    @error('pin_confirmation')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
 
                                 <h4 class="text-white">Address :</h4>
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="street">Street</label>
-                                    <input type="text" id="street" class="form-control form-control-lg" />
+                                    <label class="form-label" for="address_street">Street</label>
+                                    <input type="text" id="address_street" name="address_street" class="form-control form-control-lg" required />
+                                    @error('address_street')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4 text-white">
                                     <label class="form-label" for="city">City</label>
-                                    <input type="text" id="city" class="form-control form-control-lg" />
+                                    <input type="text" id="address_city" name="address_city" class="form-control form-control-lg" required />
+                                    @error('address_city')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4 text-white">
-                                    <label class="form-label" for="province">Province</label>
-                                    <select id="province" class="form-select form-select-lg text-black">
-                                         <option selected>Default</option>
-                                         <option value="Medan">Medan</option>
-                                         <option value="Jakarta">Jakarta</option>
+                                    <label class="form-label" for="address_province">Province</label>
+                                    <select id="address_province" name="address_province" class="form-select form-select-lg text-black" required>
+                                        <option value="">Select Province</option>
+                                        @foreach($provinces as $province)
+                                        <option value="{{ $province }}">{{ $province }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="mb-4 text-white">
                                     <label class="form-label" for="postal_code">Postal Code</label>
-                                    <input type="text" id="postal_code" class="form-control form-control-lg" />
+                                    <input type="text" id="postal_code" name="postal_code" class="form-control form-control-lg" required />
+                                    @error('postal_code')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
 
-                                <!-- <div class="form-check d-flex justify-content-center mb-5">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                                    <label class="form-check-label text-white" for="form2Example3g">
-                                        I agree all statements in <a href="#!" class=""><u>Terms of service</u></a>
-                                    </label>
-                                </div> -->
-
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5">Register</button>
+                                    <button type="submit" class="btn btn-outline-light btn-lg px-5">Register</button>
                                 </div>
 
                                 <p class="text-center text-white mt-5 mb-0">Have already an account? <a href="\login" class="text-white-50 fw-bold"><u>Login here</u></a></p>

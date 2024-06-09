@@ -11,9 +11,9 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', [homeController::class, 'index']);
-
 Route::get('/login', [loginController::class, 'index']);
 Route::get('/register', [registerController::class, 'index']);
+Route::post('/register', [registerController::class, 'createAccount']);
 Route::get('/checkout', [checkoutController::class, 'index']);
 
 // Route::get('/home', function () {
