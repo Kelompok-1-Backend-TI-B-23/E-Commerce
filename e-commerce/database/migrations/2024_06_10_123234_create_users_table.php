@@ -40,6 +40,14 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('failed_login_attempts', function (Blueprint $table) {
+            $table->id();
+            $table->string('email')->unique();
+            $table->unsignedInteger('attempt_count')->default(0);
+            $table->timestamp('last_attempt_at')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [homeController::class, 'index']);
 Route::get('/login', [loginController::class, 'index']);
+Route::post('/login', [loginController::class, 'login']);
 Route::get('/about', [aboutController::class, 'index']);
 Route::get('/profile', [profileController::class, 'index']);
 Route::get('/updateProfile', [updateProfileController::class, 'index']);
