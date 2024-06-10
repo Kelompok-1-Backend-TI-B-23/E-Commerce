@@ -3,7 +3,7 @@
 use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\registerController;
+use App\Http\Controllers\createAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', function () {
@@ -12,8 +12,8 @@ Route::get('/welcome', function () {
 
 Route::get('/', [homeController::class, 'index']);
 Route::get('/login', [loginController::class, 'index']);
-Route::get('/register', [registerController::class, 'index']);
-Route::post('/register', [registerController::class, 'createAccount']);
+Route::get('/create-account', [createAccountController::class, 'index']);
+Route::post('/create-account', [createAccountController::class, 'createAccount']);
 Route::get('/checkout', [checkoutController::class, 'index']);
 
 // Route::get('/home', function () {

@@ -2,35 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model
+class User extends Authenticatable
 {
+    use HasFactory, Notifiable;
+
     protected $fillable = [
         'username',
         'email',
-        'phone_number',
         'password',
+        'pin',
+        'phone_number',
         'address_street',
         'address_city',
         'address_province',
         'address_postal_code',
-        'pin',
+        'balance',
     ];
 
-    public static function createAccount($data)
+    protected $hidden = [
+        'password',
+        'pin',
+        'remember_token',
+    ];
+
+    public function setPasswordAttribute($value)
     {
-        return self::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'phone_number' => $data['phone_number'],
-            'password' => Hash::make($data['password']),
-            'address_street' => $data['address_street'],
-            'address_city' => $data['address_city'],
-            'address_province' => $data['address_province'],
-            'address_postal_code' => $data['address_postal_code'],
-            'pin' => Hash::make($data['pin']),
-        ]);
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function setPinAttribute($value)
+    {
+        $this->attributes['pin'] = bcrypt($value);
     }
 }
