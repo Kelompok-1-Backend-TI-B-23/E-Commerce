@@ -21,7 +21,6 @@ Route::get('/about', [aboutController::class, 'index']);
 Route::get('/profile', [profileController::class, 'index']);
 Route::get('/updateProfile', [updateProfileController::class, 'index']);
 Route::get('/changePassword', [changePasswordController::class, 'index']);
-Route::get('/changePin', [changePinController::class, 'index']);
 Route::get('/cart', [cartController::class, 'index']);
 Route::get('/checkout', [checkoutController::class, 'index']);
 Route::get('/topup', [topupController::class, 'index']);
@@ -30,6 +29,10 @@ Route::get('/purchaseHistory', [purchasehistoryController::class, 'index']);
 // Create account
 Route::get('/createAccount', [createAccountController::class, 'index']);
 Route::post('/createAccount', [createAccountController::class, 'createAccount']);
+
+// Change Pin
+Route::get('/changePin', [changePinController::class, 'index']);
+Route::post('/changePin', [changePinController::class, 'changePin']);
 
 
 
