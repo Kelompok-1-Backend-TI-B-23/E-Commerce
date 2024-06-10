@@ -21,7 +21,7 @@ class createAccountController extends Controller
      public function index()
      {
         $provinces = $this->listprovinsi;
-        return view('create_account', compact('provinces'));
+        return view('createAccount', compact('provinces'));
      }
 
     //  public function createAccount(Request $request)
