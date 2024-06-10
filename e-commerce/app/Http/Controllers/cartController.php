@@ -9,4 +9,9 @@ class cartController extends Controller
     public function index(){
         return view("cart");
     }
+
+public function addProduct($product_id, $quantity = 1){
+    
+}
+
 }
