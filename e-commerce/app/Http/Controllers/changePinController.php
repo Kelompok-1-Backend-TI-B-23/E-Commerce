@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class changePinController extends Controller
 {
@@ -13,9 +15,9 @@ class changePinController extends Controller
     public function changePin(Request $request)
     {
         $request->validate([
-            'pin' => 'required',
+            'pin' => 'required|string|digits:6|confirmed',
             'new_pin' => 'required|string|digits:6|confirmed',
-            'pin_confirm' => 'required|string|digits:6|confirmed'
+            'new_pin_confirm' => 'required|string|digits:6|confirmed'
         ]);
 
         $user = Auth::user();
@@ -27,6 +29,6 @@ class changePinController extends Controller
         $user->pin = Hash::make($request->new_pin);
         $user->save();
 
-        return redirect()->route('home')->with('status', 'PIN has been updated successfully');
+        return redirect('home')->with('status', 'PIN has been updated successfully');
     }
 }
