@@ -16,6 +16,7 @@ use App\Http\Controllers\createAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [homeController::class, 'index']);
+Route::get('/home', [homeController::class, 'index']);
 Route::get('/login', [loginController::class, 'index']);
 Route::post('/login', [loginController::class, 'login']);
 Route::get('/about', [aboutController::class, 'index']);
