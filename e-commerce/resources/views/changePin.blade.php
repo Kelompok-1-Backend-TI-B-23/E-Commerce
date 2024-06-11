@@ -31,9 +31,8 @@
                     @endif
 
                     <div class="pin-change-form">
-                    <form action="/changePin" method="POST">                            
-                    @csrf
-
+                        <form action="/changePin" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="currentPin" class="form-label">Current PIN</label>
                                 <input type="password" class="form-control" id="currentPin" name="pin" placeholder="Enter current PIN" required>
