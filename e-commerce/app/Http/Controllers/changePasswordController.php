@@ -25,7 +25,7 @@ class changePasswordController extends Controller
 
         $user = Auth::user();
 
-        // Check if current password matches
+        // Check apakah password lama benar
         if (!Hash::check($request->currentPassword, $user->password)) {
             return back()->withErrors(['currentPassword' => 'Current password does not match']);
         }
