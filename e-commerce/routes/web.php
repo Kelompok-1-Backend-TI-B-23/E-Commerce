@@ -27,7 +27,9 @@ Route::get('/changePin', [changePinController::class, 'index']);
 Route::get('/cart', [cartController::class, 'index']);
 Route::get('/checkout', [checkoutController::class, 'index']);
 Route::get('/topup', [topupController::class, 'index']);
-Route::get('/purchaseHistory', [purchasehistoryController::class, 'index']);
+
+// purchase history
+Route::get('/purchaseHistory', [purchasehistoryController::class, 'index']); 
 
 // Create account
 Route::get('/createAccount', [createAccountController::class, 'index']);
