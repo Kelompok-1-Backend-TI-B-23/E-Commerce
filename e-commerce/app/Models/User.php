@@ -29,13 +29,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+    // public function setPasswordAttribute($value)
+    // {
+    //     $this->attributes['password'] = bcrypt($value);
+    // }
 
-    public function setPinAttribute($value)
-    {
-        $this->attributes['pin'] = bcrypt($value);
-    }
+    // public function setPinAttribute($value)
+    // {
+    //     $this->attributes['pin'] = bcrypt($value);
+    // }
 }
