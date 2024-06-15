@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="dark-mode float-center my-3">
-                        <a href="/" class="btn btn-dark">Get Started</a>
+                        <a href="" class="btn btn-dark">Get Started</a>
                     </div>
 
                 </div>
