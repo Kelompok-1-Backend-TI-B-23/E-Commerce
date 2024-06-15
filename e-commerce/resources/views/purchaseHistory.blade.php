@@ -11,38 +11,27 @@
             <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><b>Purchase History</b></h4>
-                    @foreach ($purchaseHistory as $purchase)
-                    <div class="purchase-item mb-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Transaction ID: {{ $purchase->transaction_id }}</h5>
-                                <p class="card-text text-muted">Date: {{ $purchase->transaction_date }}</p>
-                                <p class="card-text">Product: T-shirt</p>
-                                <p class="card-text">Price: {{ $purchase->total_price }}</p>
+                    @if($user->history->isEmpty())
+                        <h5 class="card-title">You haven't make any purchase</h5>
+                    @else
+                        @foreach ($user->history as $purchase)
+                        <div class="purchase-item mb-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Transaction ID: {{ $purchase->transaction_id }}</h5>
+                                    <p class="card-text text-muted">Date: {{ $purchase->transaction_date }}</p>
+                                    @foreach ($purchase->transaction as $transaction)
+                                        @foreach ($transaction->product as $product)
+                                            <p class="card-text">Product: {{ $product->product_name }} {{ $transaction->quantity }}</p>
+                                        @endforeach
+                                    @endforeach
+                                    <p class="card-text">Shipping fee: {{ $purchase->ship_fee }}</p>
+                                    <p class="card-text">Price: {{ $purchase->total_price }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="purchase-item mb-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Transaction ID: #789012</h5>
-                                <p class="card-text text-muted">Date: May 15, 2024</p>
-                                <p class="card-text">Product: Shoes</p>
-                                <p class="card-text">Price: Rp. 300.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="purchase-item mb-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Transaction ID: #345678</h5>
-                                <p class="card-text text-muted">Date: April 30, 2024</p>
-                                <p class="card-text">Product: Jacket</p>
-                                <p class="card-text">Price: Rp. 500.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

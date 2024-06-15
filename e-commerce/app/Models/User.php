@@ -29,6 +29,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function history()
+    {
+        return $this->hasMany(purchaseHistory::class);
+    }
+
     // public function setPasswordAttribute($value)
     // {
     //     $this->attributes['password'] = bcrypt($value);

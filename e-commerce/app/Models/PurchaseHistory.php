@@ -19,7 +19,7 @@ class PurchaseHistory extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function history()
+    public function transaction()
     {
         return $this->hasMany(TransactionDetails::class);
     }
