@@ -14,7 +14,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -38,7 +38,7 @@ class LoginController extends Controller
             FailedLoginAttempt::where('email', $email)->delete();
             Auth::login($user);
 
-            return redirect('home');
+            return redirect()->route('user.home');
         } else {
             $failedAttempt = FailedLoginAttempt::where('email', $email)->first();
 
@@ -68,5 +68,11 @@ class LoginController extends Controller
             $remaining_attempts = 5 - ($failedAttempt ? $failedAttempt->attempt_count : 0);
             return back()->withErrors(['email' => "Wrong email or password. $remaining_attempts attempts remaining."]);
         }
+    }
+
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login')->with('Anda logout');
     }
 }
