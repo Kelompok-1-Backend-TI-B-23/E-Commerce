@@ -15,12 +15,12 @@ return new class extends Migration
             $table->foreignId('user_id')->index();
             $table->string('transaction_id')->unique()->primary();
             $table->timestamp('transaction_date');
-            $table->decimal('total_price', 15, 2); // masih belum yakin taruh dmn
+            // $table->decimal('total_price', 15, 2); // masih belum yakin taruh dmn
         });
 
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->foreignId('transaction_id')->primary(); // foreign key to purchase_history table
-            $table->foreignId('product_id')->primary(); // foreign key ke table product
+            $table->foreignId('product_id'); // foreign key ke table product
             $table->integer('quantity');
         });
     }

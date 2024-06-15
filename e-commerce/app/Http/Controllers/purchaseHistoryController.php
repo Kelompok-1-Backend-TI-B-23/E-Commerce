@@ -3,20 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\PurchaseHistory;
 
 class purchaseHistoryController extends Controller
 {
     public function index(){
-        // Mengambil data dari tabel purchase_histories
-        $purchaseHistory = DB::table('purchase_history')->get();
-        $transactionDetails = DB::table('transaction_details')->get();
-
-        // Mengirim data ke view purchaseHistory
-        return view('purchaseHistory', [
-            'purchaseHistory' => $purchaseHistory,
-            'transactionDetails' => $transactionDetails
-        ]);
+        $purchaseHistory = PurchaseHistory::with('history.product')->where('user_id', auth()->id())->where('status', 'active')->first();
+        return view('purchaseHistory.index', compact('purchaseHistory'));
     }
 
 }
