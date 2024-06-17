@@ -37,3 +37,8 @@ Route::post('/changePin', [changePinController::class, 'changePin']);
 // Change Password
 Route::get('/changePassword', [changePasswordController::class, 'index']);
 Route::post('/changePassword', [changePasswordController::class, 'changePassword']);
+
+
+
+
+
