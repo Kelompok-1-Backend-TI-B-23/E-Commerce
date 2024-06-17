@@ -20,6 +20,7 @@ Route::get('/login', [loginController::class, 'index']);
 Route::get('/about', [aboutController::class, 'index']);
 Route::get('/profile', [profileController::class, 'index']);
 Route::get('/updateProfile', [updateProfileController::class, 'index']);
+// Change Password
 Route::get('/changePassword', [changePasswordController::class, 'index']);
 Route::post('/changePassword', [changePasswordController::class, 'changePassword']);
 Route::get('/changePin', [changePinController::class, 'index']);
