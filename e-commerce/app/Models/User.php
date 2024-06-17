@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function history()
     {
-        return $this->hasMany(purchaseHistory::class);
+        return $this->hasMany(purchaseHistory::class, 'user_id');
     }
 
     // public function setPasswordAttribute($value)

@@ -10,16 +10,23 @@ class TransactionDetails extends Model
     use HasFactory;
 
     protected $fillable = [
-        'transaction_id',
-        'product_id',
+        'purchase_history_id',
         'quantity',
     ];
+
+    protected $table = 'transaction_details';
 
     public function transaction(){
         return $this->belongsTo(PurchaseHistory::class);
     }
 
-    public function product(){
-        return $this->belongsToMany(Product::class)->withPivot('quantity');;
+    // public function product(){
+    //     return $this->belongsTo(Product::class);
+    // }
+    public function product()
+    {
+        return $this->belongsToMany(Product::class, 'transaction_details');
+                    // ->withPivot('quantity')
+                    // ->withTimestamps();
     }
 }

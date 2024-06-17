@@ -40,6 +40,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::get('/topup', [topupController::class, 'index'])->name('topup');
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');
     Route::get('/about', [aboutController::class, 'index'])->name('about');
+
+    // route sementara
+    Route::get('/buy', [purchasehistoryController::class, 'buy'])->name('buy');
+    Route::post('/store', [purchasehistoryController::class, 'store'])->name('store');
 });
 
 

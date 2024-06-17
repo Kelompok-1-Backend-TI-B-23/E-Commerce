@@ -11,12 +11,16 @@ class PurchaseHistory extends Model
 
     protected $fillable = [
         'user_id',
-        'transaction_id',
+        // 'transaction_id',
         'transaction_date',
+        'ship_fee',
+        'total_price',
     ];
 
+    protected $table = 'purchase_history';
+
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function transaction()

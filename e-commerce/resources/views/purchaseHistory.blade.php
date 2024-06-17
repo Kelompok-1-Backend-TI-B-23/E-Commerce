@@ -12,17 +12,23 @@
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><b>Purchase History</b></h4>
                     @if($user->history->isEmpty())
-                        <h5 class="card-title">You haven't make any purchase</h5>
+                        <h5 class="card-title text-center">You haven't make any purchase</h5>
                     @else
                         @foreach ($user->history as $purchase)
                         <div class="purchase-item mb-4">
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h5 class="card-title">Transaction ID: {{ $purchase->transaction_id }}</h5>
+                                    <h5 class="card-title">Transaction ID: {{ $purchase->id }}</h5>
                                     <p class="card-text text-muted">Date: {{ $purchase->transaction_date }}</p>
                                     @foreach ($purchase->transaction as $transaction)
                                         @foreach ($transaction->product as $product)
-                                            <p class="card-text">Product: {{ $product->product_name }} {{ $transaction->quantity }}</p>
+                                            @if ($transaction->product)
+                                                <p class="card-text">Product: {{ $product->name }} </p> 
+                                                <p class="card-text">Product: {{ $product->price }} </p>
+                                                <!-- {{ $transaction->quantity }} -->
+                                            @else
+                                                <p class="card-text">Product not found </p>
+                                            @endif
                                         @endforeach
                                     @endforeach
                                     <p class="card-text">Shipping fee: {{ $purchase->ship_fee }}</p>
