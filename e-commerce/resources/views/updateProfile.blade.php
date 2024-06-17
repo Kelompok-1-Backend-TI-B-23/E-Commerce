@@ -42,35 +42,35 @@
 
 @section('content')
 <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
-                <div class="card-body">
-                    <form method="POST" action="" class="form-container" enctype="multipart/form-data">
-                            @method("PUT")
-                            {{ csrf_field() }}
+    <div class="col-md-6">
+        <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
+            <div class="card-body">
+                <form method="POST" action="{{ route('user.updateProfile') }}" class="form-container" enctype="multipart/form-data">
+                    @method("PUT")
+                    @csrf
                     <div class="mt-5 form-container">
                         <div>
-                            <h4 class="card-title mb-4"><b>Hi, Nama</b></h4>
+                            <h4 class="card-title mb-4"><b>Hi, {{ $User->username }}</b></h4>
                         </div>
 
                         <!-- Username -->
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Username</strong></h5>
-                            <input type="text" class="form-control" name="username" id="username" value="Ini Valuenya dari DB">
+                            <input type="text" class="form-control" name="username" id="username" value="{{ $User->username }}" readonly>
                             <small class="text-danger">INI UTK ERROR MSG</small>
                         </div>
 
                         <!-- Email -->
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Email</strong></h5>
-                            <input type="text" class="form-control" name="email" id="email" value="Ini Valuenya dari DB">
+                            <input type="text" class="form-control" name="email" id="email" value="{{ $User->email }}" readonly>
                             <small class="text-danger">INI UTK ERROR MSG</small>
                         </div>
 
                         <!-- Phone Number -->
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Phone Number</strong></h5>
-                            <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="Ini Valuenya dari DB">
+                            <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="{{ $User->phone_number }}">
                             <small class="text-danger">INI UTK ERROR MSG</small>
                         </div>
 
@@ -81,28 +81,28 @@
                             <!-- Province -->
                             <div>
                                 <label for="province" class="form-label opacity-75 pb-0 mb-0"><strong>Province</strong></label>
-                                <input type="text" class="form-control" name="province" id="province" value="Ini Valuenya dari DB">
+                                <input type="text" class="form-control" name="province" id="province" value="{{ $User->address_province }}">
                                 <small class="text-danger">INI UTK ERROR MSG</small>
                             </div>
 
                             <!-- City -->
                             <div>
                                 <label for="city" class="form-label opacity-75 pb-0 mb-0"><strong>City</strong></label>
-                                <input type="text" class="form-control" name="city" id="city" value="Ini Valuenya dari DB">
+                                <input type="text" class="form-control" name="city" id="city" value="{{ $User->address_city }}">
                                 <small class="text-danger">INI UTK ERROR MSG</small>
                             </div>
 
                             <!-- Detail Street -->
                             <div>
                                 <label for="detailStreet" class="form-label opacity-75 pb-0 mb-0"><strong>Detail Street</strong></label>
-                                <input type="text" class="form-control" name="detailStreet" id="detailStreet" value="Ini Valuenya dari DB">
+                                <input type="text" class="form-control" name="detailStreet" id="detailStreet" value="{{ $User->address_street }}">
                                 <small class="text-danger">INI UTK ERROR MSG</small>
                             </div>
 
                             <!-- Postal Code -->
                             <div>
                                 <label for="postalCode" class="form-label opacity-75 pb-0 mb-0"><strong>Postal Code</strong></label>
-                                <input type="text" class="form-control" name="postalCode" id="postalCode" value="Ini Valuenya dari DB">
+                                <input type="text" class="form-control" name="postalCode" id="postalCode" value="{{ $User->address_postal_code }}">
                                 <small class="text-danger">INI UTK ERROR MSG</small>
                             </div>
                         </div>
@@ -112,9 +112,8 @@
                             <a href="/profile" class="btn btn-danger ms-3">Cancel</a>
                         </div>
                     </div>
-                    </form>
-                </div> 
-            </div>
+                </form>
+            </div> 
         </div>
     </div>
 </div>
