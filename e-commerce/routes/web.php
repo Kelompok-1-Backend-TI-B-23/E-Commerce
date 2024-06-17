@@ -29,7 +29,6 @@ Route::get('/purchaseHistory', [purchasehistoryController::class, 'index']);
 // Create account
 Route::get('/createAccount', [createAccountController::class, 'index']);
 Route::post('/createAccount', [createAccountController::class, 'createAccount']);
-Route::post('/createAccount', [createAccountController::class, 'createAccount']);
 
 // Change Pin
 Route::get('/changePin', [changePinController::class, 'index']);
