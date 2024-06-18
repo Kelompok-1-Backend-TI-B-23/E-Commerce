@@ -34,6 +34,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::get('/profile', [profileController::class, 'index'])->name('profile');
     Route::get('/updateProfile', [updateProfileController::class, 'index'])->name('updateProfile');
     Route::get('/changePassword', [changePasswordController::class, 'index'])->name('changePassword');
+    Route::post('/changePassword', [changePasswordController::class, 'changePassword']);
     Route::get('/changePin', [changePinController::class, 'index'])->name('changePin');
     Route::get('/cart', [cartController::class, 'index'])->name('cart');
     Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout');
