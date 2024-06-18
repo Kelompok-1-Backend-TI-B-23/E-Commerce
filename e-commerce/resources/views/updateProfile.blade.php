@@ -57,21 +57,21 @@
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Username</strong></h5>
                             <input type="text" class="form-control" name="username" id="username" value="{{ $User->username }}" readonly>
-                            <small class="text-danger">INI UTK ERROR MSG</small>
                         </div>
 
                         <!-- Email -->
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Email</strong></h5>
                             <input type="text" class="form-control" name="email" id="email" value="{{ $User->email }}" readonly>
-                            <small class="text-danger">INI UTK ERROR MSG</small>
                         </div>
 
                         <!-- Phone Number -->
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Phone Number</strong></h5>
                             <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="{{ $User->phone_number }}">
-                            <small class="text-danger">INI UTK ERROR MSG</small>
+                            @error('phoneNumber')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <!-- Address -->
@@ -79,31 +79,43 @@
                             <h5 class="form-label opacity-75"><strong>Address:</strong></h5>
                             
                             <!-- Province -->
-                            <div>
+                            <div class="mb-3">
                                 <label for="province" class="form-label opacity-75 pb-0 mb-0"><strong>Province</strong></label>
-                                <input type="text" class="form-control" name="province" id="province" value="{{ $User->address_province }}">
-                                <small class="text-danger">INI UTK ERROR MSG</small>
+                                <select class="form-control" name="province" id="province">
+                                    @foreach($provinces as $province)
+                                        <option value="{{ $province }}" {{ $User->address_province == $province ? 'selected' : '' }}>{{ $province }}</option>
+                                    @endforeach
+                                </select>
+                                @error('province')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <!-- City -->
-                            <div>
+                            <div class="mb-3">
                                 <label for="city" class="form-label opacity-75 pb-0 mb-0"><strong>City</strong></label>
                                 <input type="text" class="form-control" name="city" id="city" value="{{ $User->address_city }}">
-                                <small class="text-danger">INI UTK ERROR MSG</small>
+                                @error('city')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <!-- Detail Street -->
-                            <div>
+                            <div class="mb-3">
                                 <label for="detailStreet" class="form-label opacity-75 pb-0 mb-0"><strong>Detail Street</strong></label>
                                 <input type="text" class="form-control" name="detailStreet" id="detailStreet" value="{{ $User->address_street }}">
-                                <small class="text-danger">INI UTK ERROR MSG</small>
+                                @error('detailStreet')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <!-- Postal Code -->
-                            <div>
+                            <div class="mb-3">
                                 <label for="postalCode" class="form-label opacity-75 pb-0 mb-0"><strong>Postal Code</strong></label>
                                 <input type="text" class="form-control" name="postalCode" id="postalCode" value="{{ $User->address_postal_code }}">
-                                <small class="text-danger">INI UTK ERROR MSG</small>
+                                @error('postalCode')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
 

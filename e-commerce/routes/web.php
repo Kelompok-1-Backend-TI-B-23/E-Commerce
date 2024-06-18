@@ -33,7 +33,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::get('/home', [homeController::class, 'index'])->name('home');
     Route::get('/profile', [profileController::class, 'index'])->name('profile');
     Route::get('/updateProfile', [updateProfileController::class, 'index'])->name('updateProfile');
-    Route::put('/profile', [updateProfileController::class, 'update'])->name('updateProfile');
+    Route::put('/updateProfile', [updateProfileController::class, 'update'])->name('updateProfile');
     Route::get('/changePassword', [changePasswordController::class, 'index'])->name('changePassword');
     Route::get('/changePin', [changePinController::class, 'index'])->name('changePin');
     Route::get('/cart', [cartController::class, 'index'])->name('cart');
