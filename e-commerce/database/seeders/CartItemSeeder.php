@@ -13,6 +13,14 @@ class CartItemSeeder extends Seeder
     public function run()
     {
         CartItem::create([
+            'cart_id' => 2,
+            'product_id' => 1,
+            'quantity' => 1,
+        ]);
+
+        CartItem::create([
+            'cart_id' => 2,
+            'product_id' => 2,
             'quantity' => 1,
         ]);
     }

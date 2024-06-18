@@ -14,7 +14,8 @@ class CartSeeder extends Seeder
     public function run(): void
     {
         Cart::create([
-            'status' => 'active'
+            'status' => 'active',
+            'user_id' => 1
         ]);
     }
 }
