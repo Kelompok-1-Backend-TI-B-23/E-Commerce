@@ -17,14 +17,23 @@
                             <div class="mb-3">
                                 <label for="currentPassword" class="form-label">Current Password</label>
                                 <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Enter current password" required>
+                                @error('currentPassword')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="newPassword" class="form-label">New Password</label>
                                 <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter new password" required>
+                                @error('newPassword')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
-                                <input type="password" class="form-control" id="confirmNewPassword" name="new_password_confirmation" placeholder="Confirm new password" required>
+                                <label for="newPassword_confirmation" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="newPassword_confirmation" name="newPassword_confirmation" placeholder="Confirm new password" required>
+                                @error('newPassword_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-dark">Change Password</button>
