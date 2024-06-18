@@ -11,7 +11,7 @@ use App\Models\TransactionDetails;
 class purchaseHistoryController extends Controller
 {
     public function index(){
-        $user = Auth::user()->load('history.transaction.product');
+        $user = Auth::user()->load('history.transaction');
         return view('purchaseHistory', compact('user'));
     }
 
@@ -36,7 +36,6 @@ class purchaseHistoryController extends Controller
                 $product = Product::findOrFail($productData['product_id']);
                 $history->transaction()->attach($product, ['quantity' => $productData['quantity']]);
             }
-
             return redirect('/user/purchaseHistory');
         }
 

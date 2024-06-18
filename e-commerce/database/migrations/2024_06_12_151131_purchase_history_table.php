@@ -21,25 +21,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Schema::create('transaction_details', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->foreignId('purchase_history_id')->constrained('purchase_history'); // foreign key ke table purchase_history
-        //     $table->foreignId('product_id')->constrained('products'); // foreign key ke table product
-        //     $table->integer('quantity');
-        //     $table->timestamps();
-        // });
-
         Schema::create('transaction_details', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('purchase_history_id');
             $table->integer('quantity');
-            $table->timestamps();
-
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('purchase_history_id')->references('id')->on('purchase_history')->onDelete('cascade');
-            
-            $table->unique(['product_id', 'purchase_history_id']);
         });
     }
 

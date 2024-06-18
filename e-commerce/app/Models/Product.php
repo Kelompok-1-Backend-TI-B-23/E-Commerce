@@ -30,14 +30,8 @@ class Product extends Model{
 
     public function transaction()
     {
-        return $this->belongsToMany(TransactionDetails::class, 'transaction_details');
-                    // ->withPivot('quantity')
-                    // ->withTimestamps();
+        return $this->belongsToMany(PurchaseHistory::class, 'transaction_details')->withPivot('quantity');
     }
-
-    // public function transaction(){
-    //     return $this->hasMany(TransactionDetails::class);
-    // }
 
     // public function category()
     // {

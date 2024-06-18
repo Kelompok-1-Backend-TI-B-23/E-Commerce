@@ -11,7 +11,6 @@ class PurchaseHistory extends Model
 
     protected $fillable = [
         'user_id',
-        // 'transaction_id',
         'transaction_date',
         'ship_fee',
         'total_price',
@@ -25,6 +24,6 @@ class PurchaseHistory extends Model
 
     public function transaction()
     {
-        return $this->hasMany(TransactionDetails::class);
+        return $this->belongsToMany(Product::class, 'transaction_details')->withPivot('quantity');
     }
 }

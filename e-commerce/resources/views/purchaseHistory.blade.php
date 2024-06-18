@@ -20,16 +20,12 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Transaction ID: {{ $purchase->id }}</h5>
                                     <p class="card-text text-muted">Date: {{ $purchase->transaction_date }}</p>
-                                    @foreach ($purchase->transaction as $transaction)
-                                        @foreach ($transaction->product as $product)
-                                            @if ($transaction->product)
-                                                <p class="card-text">Product: {{ $product->name }} </p> 
-                                                <p class="card-text">Product: {{ $product->price }} </p>
-                                                <!-- {{ $transaction->quantity }} -->
-                                            @else
-                                                <p class="card-text">Product not found </p>
-                                            @endif
-                                        @endforeach
+                                    @foreach ($purchase->transaction as $product)
+                                        <div class="card-body">
+                                            <p class="card-text">Product: {{ $product->name }} </p> 
+                                            <p class="card-text">Price: {{ $product->price }} </p>
+                                            <p class="card-text">Qty: {{ $product->pivot->quantity }} </p>
+                                        </div>
                                     @endforeach
                                     <p class="card-text">Shipping fee: {{ $purchase->ship_fee }}</p>
                                     <p class="card-text">Price: {{ $purchase->total_price }}</p>
