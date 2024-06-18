@@ -21,10 +21,9 @@
                                     <h5 class="card-title">Transaction ID: {{ $purchase->id }}</h5>
                                     <p class="card-text text-muted">Date: {{ $purchase->transaction_date }}</p>
                                     @foreach ($purchase->transaction as $product)
-                                        <div class="card-body">
-                                            <p class="card-text">Product: {{ $product->name }} </p> 
-                                            <p class="card-text">Price: {{ $product->price }} </p>
-                                            <p class="card-text">Qty: {{ $product->pivot->quantity }} </p>
+                                        <div class="card mb-3">
+                                            <p class="card-text">Product: {{ $product->name }} x {{ $product->pivot->quantity }}</p> 
+                                            <p class="card-text">Price: {{ number_format($product->price * $product->pivot->quantity, 2) }}</p>
                                         </div>
                                     @endforeach
                                     <p class="card-text">Shipping fee: {{ $purchase->ship_fee }}</p>
