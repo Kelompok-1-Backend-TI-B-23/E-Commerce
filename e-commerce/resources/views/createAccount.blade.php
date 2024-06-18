@@ -53,20 +53,6 @@ createAccount
             @enderror
         </div>
         <div class="mb3">
-            <label for="address_street" class="db mb2">Street Address</label>
-            <input type="text" name="address_street" id="address_street" class="input-reset ba b--black-20 pa2 mb2 db w-100" required>
-            @error('address_street')
-            <p class="text-danger">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="mb3">
-            <label for="address_city" class="db mb2">City</label>
-            <input type="text" name="address_city" id="address_city" class="input-reset ba b--black-20 pa2 mb2 db w-100" required>
-            @error('address_city')
-            <p class="text-danger">{{ $message }}</p>
-            @enderror
-        </div>
-        <div class="mb3">
             <label for="address_province" class="db mb2">Province</label>
             <select name="address_province" id="address_province" class="input-reset ba b--black-20 pa2 mb2 db w-100" required>
                 <option value="">Select Province</option>
@@ -75,6 +61,22 @@ createAccount
                 @endforeach
             </select>
             @error('address_province')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb3">
+            <label for="address_city" class="db mb2">City</label>
+            <select name="address_city" id="address_city" class="input-reset ba b--black-20 pa2 mb2 db w-100" required>
+                <option value="">Select City</option>
+            </select>
+            @error('address_city')
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb3">
+            <label for="address_street" class="db mb2">Street Address</label>
+            <input type="text" name="address_street" id="address_street" class="input-reset ba b--black-20 pa2 mb2 db w-100" required>
+            @error('address_street')
             <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
@@ -90,4 +92,25 @@ createAccount
         </div>
     </form>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cities = @json($cities);
+        const provinceSelect = document.getElementById('address_province');
+        const citySelect = document.getElementById('address_city');
+
+        provinceSelect.addEventListener('change', function () {
+            const selectedProvince = this.value;
+            const citiesForProvince = cities[selectedProvince] || [];
+
+            citySelect.innerHTML = '<option value="">Select City</option>';
+
+            citiesForProvince.forEach(function (city) {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
+            });
+        });
+    });
+</script>
 @endsection
