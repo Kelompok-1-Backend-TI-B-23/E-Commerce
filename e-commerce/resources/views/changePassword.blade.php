@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><b>Change Password</b></h4>
                     <div class="password-change-form">
-                        <form action="{{ url('/changePassword') }}" method="POST">
+                        <form action="/changePassword" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="currentPassword" class="form-label">Current Password</label>
