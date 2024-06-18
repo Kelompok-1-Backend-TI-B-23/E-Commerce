@@ -25,20 +25,20 @@ Cart
                             <div class="row">{{ $item->product->name }}</div>
                         </div>
                         <div class="col">
-                            <form action="{{ route('cart.update', $item->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('user.cart.update', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <input type="hidden" name="quantity" value="{{ $item->quantity - 1 }}">
                                 <button type="submit" class="btn btn-sm btn-outline-secondary">-</button>
                             </form>
                             <span class="border">{{ $item->quantity }}</span>
-                            <form action="{{ route('cart.update', $item->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('user.cart.update', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <input type="hidden" name="quantity" value="{{ $item->quantity + 1 }}">
                                 <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
                             </form>
                         </div>
                         <div class="col">&euro; {{ number_format($item->price, 2) }}
-                            <form action="{{ route('cart.remove', $item->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('user.cart.remove', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="close">&#10005;</button>
                             </form>
