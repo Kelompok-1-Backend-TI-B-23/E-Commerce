@@ -16,13 +16,13 @@ class changePasswordController extends Controller
         $request->validate([
             'currentPassword' => 'required',
             'newPassword' => 'required|min:6|confirmed',
-            'new_password_confirmation' => 'required|min:6|confirmed',
+            'newPassword_confirmation' => 'required|min:6',
         ]);
 
         $user = Auth::user();
 
         if (!$user) {
-            return redirect('login')->withErrors(['error' => 'You must be logged in to change your password']);
+            return redirect()->route('indexLogin')->withErrors(['error' => 'You must be logged in to change your password']);
         }
 
         if (!Hash::check($request->currentPassword, $user->password)) {
@@ -32,6 +32,6 @@ class changePasswordController extends Controller
         $user->password = Hash::make($request->newPassword);
         $user->save();
 
-        return redirect('home')->with('status', 'Password changed successfully');
+        return redirect()->route('user.home')->with('status', 'Password changed successfully');
     }
 }
