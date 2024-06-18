@@ -1,8 +1,6 @@
-@extends ('template')
+@extends('template')
 
-@section('title')
-    Profile
-@endsection
+@section('title', 'Profile')
 
 @section('navigation')
 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -46,12 +44,10 @@
         <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
             <div class="card-body">
                 <form method="POST" action="{{ route('user.updateProfile') }}" class="form-container" enctype="multipart/form-data">
-                    @method("PUT")
+                    @method('PUT')
                     @csrf
-                    <div class="mt-5 form-container">
-                        <div>
-                            <h4 class="card-title mb-4"><b>Hi, {{ $User->username }}</b></h4>
-                        </div>
+                    <div class="mt-5">
+                        <h4 class="card-title mb-4"><b>Hi, {{ $User->username }}</b></h4>
 
                         <!-- Username -->
                         <div class="mb-4">
@@ -68,7 +64,7 @@
                         <!-- Phone Number -->
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Phone Number</strong></h5>
-                            <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="{{ $User->phone_number }}">
+                            <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" id="phoneNumber" value="{{ old('phoneNumber', $User->phone_number) }}">
                             @error('phoneNumber')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -77,13 +73,13 @@
                         <!-- Address -->
                         <div class="mb-4">
                             <h5 class="form-label opacity-75"><strong>Address:</strong></h5>
-                            
+
                             <!-- Province -->
                             <div class="mb-3">
-                                <label for="province" class="form-label opacity-75 pb-0 mb-0"><strong>Province</strong></label>
-                                <select class="form-control" name="province" id="province">
+                                <label for="province" class="form-label opacity-75"><strong>Province</strong></label>
+                                <select class="form-control @error('province') is-invalid @enderror" name="province" id="province">
                                     @foreach($provinces as $province)
-                                        <option value="{{ $province }}" {{ $User->address_province == $province ? 'selected' : '' }}>{{ $province }}</option>
+                                        <option value="{{ $province }}" {{ old('province', $User->address_province) == $province ? 'selected' : '' }}>{{ $province }}</option>
                                     @endforeach
                                 </select>
                                 @error('province')
@@ -93,8 +89,12 @@
 
                             <!-- City -->
                             <div class="mb-3">
-                                <label for="city" class="form-label opacity-75 pb-0 mb-0"><strong>City</strong></label>
-                                <input type="text" class="form-control" name="city" id="city" value="{{ $User->address_city }}">
+                                <label for="city" class="form-label opacity-75"><strong>City</strong></label>
+                                <select class="form-control @error('city') is-invalid @enderror" name="city" id="city">
+                                    @foreach($cities[$User->address_province] as $city)
+                                        <option value="{{ $city }}" {{ old('city', $User->address_city) == $city ? 'selected' : '' }}>{{ $city }}</option>
+                                    @endforeach
+                                </select>
                                 @error('city')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -102,8 +102,8 @@
 
                             <!-- Detail Street -->
                             <div class="mb-3">
-                                <label for="detailStreet" class="form-label opacity-75 pb-0 mb-0"><strong>Detail Street</strong></label>
-                                <input type="text" class="form-control" name="detailStreet" id="detailStreet" value="{{ $User->address_street }}">
+                                <label for="detailStreet" class="form-label opacity-75"><strong>Detail Street</strong></label>
+                                <input type="text" class="form-control @error('detailStreet') is-invalid @enderror" name="detailStreet" id="detailStreet" value="{{ old('detailStreet', $User->address_street) }}">
                                 @error('detailStreet')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -111,22 +111,51 @@
 
                             <!-- Postal Code -->
                             <div class="mb-3">
-                                <label for="postalCode" class="form-label opacity-75 pb-0 mb-0"><strong>Postal Code</strong></label>
-                                <input type="text" class="form-control" name="postalCode" id="postalCode" value="{{ $User->address_postal_code }}">
+                                <label for="postalCode" class="form-label opacity-75"><strong>Postal Code</strong></label>
+                                <input type="text" class="form-control @error('postalCode') is-invalid @enderror" name="postalCode" id="postalCode" value="{{ old('postalCode', $User->address_postal_code) }}">
                                 @error('postalCode')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="dark-mode float-end my-3">
-                            <button type="submit" class="btn btn-dark">Save Profile</button>
-                            <a href="/profile" class="btn btn-danger ms-3">Cancel</a>
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-success me-md-2">Save Profile</button>
+                                <a href="/profile" class="btn btn-danger">Cancel</a>
+                            </div>
                         </div>
                     </div>
                 </form>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    const city = @json($cities);
+    const provinceSelect = document.getElementById('province');
+    const citySelect = document.getElementById('city');
+
+    function pilihanCity() {
+        const selectedProvince = provinceSelect.value;
+        const selectedCities = city[selectedProvince] || [];
+
+        citySelect.innerHTML = '';
+
+        selectedCities.forEach(city => {
+            const option = document.createElement('option');
+            option.value = city;
+            option.textContent = city;
+            citySelect.appendChild(option);
+        });
+    }
+
+    provinceSelect.addEventListener('change', function() {
+        pilihanCity();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        pilihanCity();
+    });
+</script>
 @endsection
