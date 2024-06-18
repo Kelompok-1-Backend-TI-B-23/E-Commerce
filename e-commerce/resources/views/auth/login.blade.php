@@ -16,10 +16,11 @@ Login
 
                         <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                         <p class="text-white-50 mb-5">Please enter your email and password</p>
-
+                        <form action="/login" method="POST">
+                        @csrf
                         <div class="mb-4 text-start text-white">
                             <label class="form-label" for="typeEmailX">Email</label>
-                            <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                            <input type="email" id="typeEmailX" name="email" class="form-control form-control-lg" />
                             @error('email')
                             <p class="text-danger">{{ $message }}</p> <!--ERROR MESSAGE-->
                             @enderror
@@ -27,8 +28,8 @@ Login
 
                         <div class="mb-4 text-start text-white">
                             <label class="form-label" for="typePasswordX">Password</label>
-                            <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                            @error('email')
+                            <input type="password" id="typePasswordX" name="password" class="form-control form-control-lg" />
+                            @error('password')
                             <p class="text-danger">{{ $message }}</p> <!--ERROR MESSAGE-->
                             @enderror
                         </div>
@@ -49,11 +50,11 @@ Login
                         <p class="mb-0">Don't have an account? <a href="/createAccount" class="text-white-50 fw-bold">Sign Up</a>
                         </p>
                     </div>
-
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
+
