@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class changePinController extends Controller
 {
-
     public function index(){
         return view("changePin");
     }
@@ -25,16 +24,16 @@ class changePinController extends Controller
 
         // Check if the user is authenticated
         if (!$user) {
-            return redirect('login')->withErrors(['error' => 'You must be logged in to change your PIN']);
+            return redirect()->route('user.login')->withErrors(['error' => 'You must be logged in to change your PIN']);
         }
 
-        if(!Hash::check($request->pin, $user->pin)) {
+        if (!Hash::check($request->pin, $user->pin)) {
             return back()->withErrors(['pin' => 'Pin is incorrect']);
         }
 
         $user->pin = Hash::make($request->new_pin);
         $user->save();
 
-        return redirect('home')->with('status', 'PIN has been updated successfully');
+        return redirect()->route('user.home')->with('status', 'PIN has been updated successfully');
     }
 }

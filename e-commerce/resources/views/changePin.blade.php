@@ -31,7 +31,7 @@
                     @endif
 
                     <div class="pin-change-form">
-                        <form action="/changePin" method="POST">
+                        <form action="{{ route('user.changePin') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="currentPin" class="form-label">Current PIN</label>
