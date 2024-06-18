@@ -11,24 +11,16 @@ use App\Http\Controllers\cartController;
 use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\topupController;
 use App\Http\Controllers\purchasehistoryController;
-
 use App\Http\Controllers\createAccountController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/login', [loginController::class, 'index'])->name('indexLogin');
 Route::post('/login', [loginController::class, 'login'])->name('login');
-
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
-// Create account
 Route::get('/createAccount', [createAccountController::class, 'index']);
 Route::post('/createAccount', [createAccountController::class, 'createAccount']);
 
-
-
-// jadi localhost/user/home buat mastiin harus login dlu sebelum masuk website
 Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function(){
     Route::get('/home', [homeController::class, 'index'])->name('home');
     Route::get('/profile', [profileController::class, 'index'])->name('profile');
@@ -42,13 +34,3 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');
     Route::get('/about', [aboutController::class, 'index'])->name('about');
 });
-
-
-
-
-
-
-
-
-
-
