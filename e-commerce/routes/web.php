@@ -35,12 +35,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::get('/updateProfile', [updateProfileController::class, 'index'])->name('updateProfile');
     Route::get('/changePassword', [changePasswordController::class, 'index'])->name('changePassword');
     Route::get('/changePin', [changePinController::class, 'index'])->name('changePin');
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::put('/cart/update/{item}', [CartController::class, 'updateCart'])->name('cart.update');
-    Route::delete('/cart/remove/{item}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::get('/cart', [cartController::class, 'index'])->name('cart');
-    Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout');
+    Route::get('/cart', [cartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [cartController::class, 'addToCart'])->name('cart.add');
+    Route::put('/cart/update/{item}', [cartController::class, 'updateCart'])->name('cart.update');
+    Route::delete('/cart/remove/{item}', [cartController::class, 'removeFromCart'])->name('cart.remove');
+    //Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout');
     Route::get('/topup', [topupController::class, 'index'])->name('topup');
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');
     Route::get('/about', [aboutController::class, 'index'])->name('about');

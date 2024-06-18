@@ -7,7 +7,7 @@ use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
 
-class CartController extends Controller
+class cartController extends Controller
 {
     public function index()
     {
