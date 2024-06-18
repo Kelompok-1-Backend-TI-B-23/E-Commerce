@@ -2,8 +2,6 @@
 
 @section('title')
 Cart
-@endsection
-
 
 @section('content')
 <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
@@ -42,7 +40,6 @@ Cart
                         <div class="col">&euro; {{ number_format($item->price, 2) }}
                             <form action="{{ route('cart.remove', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                @method('DELETE')
                                 <button type="submit" class="close">&#10005;</button>
                             </form>
                         </div>

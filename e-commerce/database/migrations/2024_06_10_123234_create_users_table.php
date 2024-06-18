@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone_number')->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('address_street');
+            $table->string('address_city');
+            $table->string('address_province');
+            $table->string('address_postal_code');
+            $table->string('pin');
+            $table->decimal('balance', 15, 2);
             $table->timestamps();
         });
 
@@ -34,6 +39,14 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+        });
+
+        Schema::create('failed_login_attempts', function (Blueprint $table) {
+            $table->id();
+            $table->string('email')->unique();
+            $table->unsignedInteger('attempt_count')->default(0);
+            $table->timestamp('last_attempt_at')->nullable();
+            $table->timestamps();
         });
     }
 

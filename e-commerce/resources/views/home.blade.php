@@ -1,8 +1,7 @@
-
 @extends ('template')
- 
+
 @section('title')
-    Home Content
+Home Content
 @endsection
 
 
@@ -20,7 +19,7 @@
             <div class="input-group-append">
                 <button class="btn btn-dark" type="button">Button</button>
             </div>
-        </div>    
+        </div>
     </div>
 </div>
 
@@ -28,20 +27,22 @@
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="text-center mb-4">Products</h2>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach ($products as $product)
             <!-- Foreach -->
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+
+                    <img class="product card-img-top" src="{{asset($product->image_url)}}" alt="..." />
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder">Fancy Product</h5>
-                            <small class="">Nama Category</small>
+                            <h5 class="fw-bolder">{{$product -> name}}</h5>
+                            <small class="">{{$product -> category}}</small>
                             <br>
                             <!-- Product price-->
-                            $40.00 - $80.00
+                            <small>{{$product -> price}}</small>
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -51,9 +52,10 @@
                 </div>
             </div>
             <!-- end foreach  -->
+            @endforeach
+
         </div>
     </div>
 </div>
- 
-@endsection
 
+@endsection
