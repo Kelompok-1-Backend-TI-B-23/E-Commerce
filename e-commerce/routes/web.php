@@ -35,7 +35,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::get('/updateProfile', [updateProfileController::class, 'index'])->name('updateProfile');
     Route::get('/changePassword', [changePasswordController::class, 'index'])->name('changePassword');
     Route::get('/changePin', [changePinController::class, 'index'])->name('changePin');
-    Route::get('/cart', [cartController::class, 'index'])->name('cart.index');
+    Route::get('/cart', [cartController::class, 'index'])->name('cart');
     Route::post('/cart/add/{product}', [cartController::class, 'addToCart'])->name('cart.add');
     Route::put('/cart/update/{item}', [cartController::class, 'updateCart'])->name('cart.update');
     Route::delete('/cart/remove/{item}', [cartController::class, 'removeFromCart'])->name('cart.remove');
