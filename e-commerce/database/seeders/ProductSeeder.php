@@ -14,9 +14,9 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $shoes = Category::where('name', 'Shoes');
-        $shirt = Category::where('name', 'Shirt');
-        $pants = Category::where('name', 'Pants');
+        $shoes = Category::where('name', 'Shoes')->first();
+        $shirt = Category::where('name', 'Shirt')->first();
+        $pants = Category::where('name', 'Pants')->first();
 
         // Data produk
         Product::create([
@@ -41,11 +41,10 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'Baju Ijo',
             'description' => 'Description for Product 3',
-            'category' => 'Shirt', // Shoes,Shirt,Pants
             'stock' => '20',
             'price' => 100.00,
             'image_url' => 'images/image3.png',
-            // 'category_id' => 2,
+            'category_id' => $shirt->id,
         ]);
     }
 }
