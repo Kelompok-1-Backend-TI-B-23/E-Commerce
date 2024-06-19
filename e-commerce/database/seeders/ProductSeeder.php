@@ -33,5 +33,16 @@ class ProductSeeder extends Seeder
             'image_url' => 'images/image2.png',
             // 'category_id' => 2,
         ]);
+
+        // Contoh product kategori selain Shoes
+        Product::create([
+            'name' => 'Baju Ijo',
+            'description' => 'Description for Product 3',
+            'category' => 'Shirt', // Shoes,Shirt,Pants
+            'stock' => '20',
+            'price' => 100.00,
+            'image_url' => 'images/image3.png',
+            // 'category_id' => 2,
+        ]);
     }
 }
