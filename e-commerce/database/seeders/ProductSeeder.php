@@ -13,25 +13,27 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        // Contoh data produk
+        $shoes = Category::where('name', 'Shoes');
+        $shirt = Category::where('name', 'Shirt');
+        $pants = Category::where('name', 'Pants');
+
+        // Data produk
         Product::create([
             'name' => 'Nike Putih',
             'description' => 'Description for Product 1',
-            'category' => 'Shoes',
             'stock' => '20',
             'price' => 50.00,
             'image_url' =>'images/image1.png',
-            // 'category_id' => 1, 
+            'category_id' => $shoes->id, 
         ]);
 
         Product::create([
             'name' => 'Nike Ijo',
             'description' => 'Description for Product 2',
-            'category' => 'Shoes',
             'stock' => '20',
             'price' => 75.00,
             'image_url' => 'images/image2.png',
-            // 'category_id' => 2,
+            'category_id' => $shoes->id,
         ]);
 
         // Contoh product kategori selain Shoes
