@@ -29,15 +29,8 @@ Cart
                             <form action="{{ route('user.cart.update', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('PUT')
-                                <input type="hidden" name="quantity" value="{{ $item->quantity - 1 }}">
-                                <button type="submit" class="btn btn-sm btn-outline-secondary">-</button>
-                            </form>
-                            <span class="border">{{ $item->quantity }}</span>
-                            <form action="{{ route('user.cart.update', $item->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="quantity" value="{{ $item->quantity + 1 }}">
-                                <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
+                                <input type="number" name="quantity" value="{{ $item->quantity }}" min="0" style="width: 50px;">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
                             </form>
                         </div>
                         <div class="col">&euro; {{ number_format($item->product->price * $item->quantity, 2) }}

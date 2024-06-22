@@ -44,7 +44,8 @@ class cartController extends Controller
         $newQuantity = $request->input('quantity');
 
         if ($newQuantity < 1) {
-            return redirect()->route('user.cart')->with('error', 'Quantity must be at least 1.');
+            $cartItem->delete();
+            return redirect()->route('user.cart')->with('success', 'Item removed from cart.');
         }
 
         $cartItem->update(['quantity' => $newQuantity]);
