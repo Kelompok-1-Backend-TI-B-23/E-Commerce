@@ -28,7 +28,7 @@
                         <a href="{{ route('user.cart') }}" class="btn btn-outline-light me-2">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
+                            <span class="badge bg-light text-dark ms-1 rounded-pill">{{ $cart->items->count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">

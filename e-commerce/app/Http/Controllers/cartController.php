@@ -11,9 +11,16 @@ class cartController extends Controller
 {
     public function index()
     {
-        $cart = Cart::with('items.product')->where('user_id', auth()->id())->where('status', 'active')->first();
+        $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
         return view('cart', compact('cart'));
     }
+
+    public function showMenu()
+    {
+        $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
+        return view('menu', compact('cart'));
+    }
+
 
     public function addToCart(Request $request, $productId)
     {
