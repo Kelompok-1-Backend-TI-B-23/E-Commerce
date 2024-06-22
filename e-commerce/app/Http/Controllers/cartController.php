@@ -21,7 +21,6 @@ class cartController extends Controller
 
         $cart = Cart::firstOrCreate([
             'user_id' => auth()->id(),
-            'status' => 'active'
         ]);
 
         $cartItem = CartItem::firstOrCreate([
@@ -45,7 +44,7 @@ class cartController extends Controller
         $newQuantity = $request->input('quantity');
 
         if ($newQuantity < 1) {
-            return redirect()->route('cart')->with('error', 'Quantity must be at least 1.');
+            return redirect()->route('user.cart')->with('error', 'Quantity must be at least 1.');
         }
 
         $cartItem->update(['quantity' => $newQuantity]);
