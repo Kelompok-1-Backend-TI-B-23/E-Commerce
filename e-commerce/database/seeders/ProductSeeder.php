@@ -101,7 +101,7 @@ class ProductSeeder extends Seeder
         // Data produk Celana 1
         Product::create([
             'name' => 'JSON Sporty x Angel Shorts',
-            'description' => 'Description for Product 4',
+            'description' => 'Step into a world of color and style with our Vibrant Pink Pants. Crafted from premium, breathable fabric, these pants offer a perfect blend of comfort and fashion. The bold pink hue is designed to stand out, making a statement wherever you go. Featuring a sleek, modern fit with an elastic waistband and adjustable drawstrings, these pants ensure maximum comfort and a customized fit. Perfect for both casual outings and active days, these pants are your go-to choice for a trendy and comfortable look.',
             'category' => 'Pants',
             'stock' => '20',
             'price' => 189000,
@@ -112,7 +112,7 @@ class ProductSeeder extends Seeder
         // Data produk Celana 2
         Product::create([
             'name' => 'JSON Sporty x Jocelyn Shorts',
-            'description' => 'Description for Product 4',
+            'description' => 'Elevate your wardrobe with our Classic Dark Blue Pants, a timeless addition to your apparel collection. Made from high-quality, durable fabric, these pants provide both comfort and longevity. The deep blue color exudes sophistication and versatility, making them suitable for various occasions, from casual gatherings to more formal events. With a tailored fit and a mid-rise waist, these pants offer a flattering silhouette that pairs effortlessly with any top.',
             'category' => 'Pants',
             'stock' => '20',
             'price' => 187000,
@@ -123,7 +123,7 @@ class ProductSeeder extends Seeder
         // Data produk Celana 3
         Product::create([
             'name' => 'JSON Sporty x James Shorts',
-            'description' => 'Description for Product 4',
+            'description' => 'Refresh your look with our Bright Light Blue Pants, designed for those who love to embrace vibrant colors. These pants are crafted from soft, lightweight material, ensuring all-day comfort. The light blue shade adds a refreshing touch to your ensemble, perfect for warm days or casual outings. Featuring a relaxed fit and a drawstring waist, these pants provide a laid-back yet stylish appearance, ideal for any casual occasion.',
             'category' => 'Pants',
             'stock' => '20',
             'price' => 179000,
@@ -134,7 +134,7 @@ class ProductSeeder extends Seeder
         // Data produk Celana 4
         Product::create([
             'name' => 'JSON Sporty x Ariana Shorts',
-            'description' => 'Description for Product 4',
+            'description' => 'Discover the perfect blend of style and comfort with our Modern Gray Pants. Made from a high-quality fabric blend, these pants are designed to offer maximum flexibility and durability. The neutral gray tone makes them a versatile addition to any wardrobe, suitable for both casual and semi-formal settings. With a comfortable fit and practical features such as an elastic waistband and multiple pockets, these pants are as functional as they are fashionable.',
             'category' => 'Pants',
             'stock' => '20',
             'price' => 169000,

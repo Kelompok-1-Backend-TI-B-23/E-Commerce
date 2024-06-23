@@ -42,7 +42,7 @@ Home Content
                             <!-- Product Category-->
                             <h6>{{ $product->category}}</h3>
                             <!-- Product price-->
-                            <span>Rp {{ $product->price }}</span>
+                            <span>Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                         </div>
                     </div>
                     <!-- Product actions-->
