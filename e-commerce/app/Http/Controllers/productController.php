@@ -12,7 +12,7 @@ class ProductController extends Controller
         $query = $request->input('query');
         $category = $request->input('category');
         $sortBy = $request->input('sort_by', 'rating'); // default : sort by rating
-        $sortDirection = $request->input('sort_direction', 'asc'); // default : descending
+        $sortDirection = $request->input('sort_direction', 'asc'); 
 
         $products = Product::query();
 
@@ -32,16 +32,16 @@ class ProductController extends Controller
                 $products = $products->orderBy('name', $sortDirection);
                 break;
             case 'rating':
-                $products = $products->orderBy('rating');
+                $products = $products->orderBy('rating', $sortDirection);
                 break;
             case 'popularity':
-                $products = $products->orderBy('sold_count');
+                $products = $products->orderBy('sold_count', $sortDirection);
                 break;
             case 'price':
-                $products = $products->orderBy('price');
+                $products = $products->orderBy('price', $sortDirection);
                 break;
             default:
-                $products = $products->orderBy('rating');
+                $products = $products->orderBy('rating', $sortDirection);
                 break;
         }
 
