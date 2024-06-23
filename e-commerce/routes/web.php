@@ -17,7 +17,7 @@ use App\Http\Controllers\createAccountController;
 use Illuminate\Support\Facades\Route;
 
 
-
+Route::get('/', [loginController::class, 'index'])->name('indexLogin');
 Route::get('/login', [loginController::class, 'index'])->name('indexLogin');
 Route::post('/login', [loginController::class, 'login'])->name('login');
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
