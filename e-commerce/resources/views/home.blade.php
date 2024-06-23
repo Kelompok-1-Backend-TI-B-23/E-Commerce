@@ -4,7 +4,6 @@
 Home Content
 @endsection
 
-
 @section('content')
 <div class="">
     <div class="container px-4 px-lg-5 mt-5">
@@ -39,8 +38,9 @@ Home Content
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <br>
+                            <h5 class="fw-bolder">{{ $product->name }}</h5>
                             <!-- Product price-->
+                            <span>${{ $product->price }}</span>
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -55,4 +55,4 @@ Home Content
         </div>
     </div>
 </div>
-
+@endsection
