@@ -42,11 +42,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
 
     Route::get('/cart', [cartController::class, 'index'])->name('cart');
     Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout');
-
-    
-    Route::get('/topup', [topupController::class, 'index'])->name('topup');
-
-
+    Route::get('/topup', [topupController::class, 'index'])->name('topup.index');
+    Route::post('/topup', [topupController::class, 'topUp'])->name('topup');
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');
     Route::get('/about', [aboutController::class, 'index'])->name('about');
 });
