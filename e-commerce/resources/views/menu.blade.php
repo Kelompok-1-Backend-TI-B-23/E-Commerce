@@ -21,7 +21,6 @@
                     </li>
                 </ul>
 
-                <!-- Check if user is authenticated -->
                 @if(Auth::check())
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -32,7 +31,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/topup" class="btn btn-outline-light me-2">
+                        <a href="{{ route('user.topup') }}" class="btn btn-outline-light me-2">
                             <i class="bi bi-wallet-fill me-1"></i>
                             <small>Rp {{ Auth::user()->balance }}</small>
                         </a>
@@ -50,7 +49,6 @@
                     </li>
                 </ul>
                 @else
-                <!-- If not authenticated, show login and signup buttons -->
                 <ul class="navbar-nav">
                     <li class="nav-item me-2">
                         <a href="/login" class="btn btn-outline-light">Login</a>
