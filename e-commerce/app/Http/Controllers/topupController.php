@@ -18,6 +18,8 @@ class topupController extends Controller
         $request->validate([
             'amount' => 'required|numeric|max:2000000',
             'pin' => 'required'
+        ], [
+            'amount.max' => 'Maximum Top-up balance is Rp. 2,000,000.'
         ]);
 
         $user = Auth::user();
@@ -28,7 +30,7 @@ class topupController extends Controller
 
             return back()->with('success', 'Successfully top-up');
         } else {
-            return back()->with('error', "PIN Salah");
+            return back()->with('error', "PIN is incorrect");
         }
     }
 }
