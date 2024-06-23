@@ -23,5 +23,11 @@ class CartItemSeeder extends Seeder
             'product_id' => 2,
             'quantity' => 1,
         ]);
+
+        CartItem::create([
+            'cart_id' => 9,
+            'product_id' => 2,
+            'quantity' => 1,
+        ]);
     }
 }

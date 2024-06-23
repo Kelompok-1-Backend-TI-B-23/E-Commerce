@@ -17,5 +17,10 @@ class CartSeeder extends Seeder
             'status' => 'active',
             'user_id' => 1
         ]);
+
+        Cart::create([
+            'status' => 'active',
+            'user_id' => 2
+        ]);
     }
 }

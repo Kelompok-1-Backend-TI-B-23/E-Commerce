@@ -4,7 +4,6 @@
 Cart
 @endsection
 
-
 @section('content')
 <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
     <div class="row">
@@ -24,22 +23,17 @@ Cart
                         <div class="col-2"><img class="img-fluid" src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}"></div>
                         <div class="col">
                             <div class="row text-muted">{{ $item->product->category ?? 'Product' }}</div>
-                            <div class="row">{{ $item->product->name }}</div>
+                            <div class="row">{{ $item->product->product_name }}</div>
                         </div>
                         <div class="col">
                             <form action="{{ route('user.cart.update', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                <input type="hidden" name="quantity" value="{{ $item->quantity - 1 }}">
-                                <button type="submit" class="btn btn-sm btn-outline-secondary">-</button>
-                            </form>
-                            <span class="border">{{ $item->quantity }}</span>
-                            <form action="{{ route('user.cart.update', $item->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <input type="hidden" name="quantity" value="{{ $item->quantity + 1 }}">
-                                <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
+                                @method('PUT')
+                                <input type="number" name="quantity" value="{{ $item->quantity }}" min="0" style="width: 50px;">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
                             </form>
                         </div>
-                        <div class="col">&euro; {{ number_format($item->price, 2) }}
+                        <div class="col">&euro; {{ number_format($item->product->price * $item->quantity, 2) }}
                             <form action="{{ route('user.cart.remove', $item->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
@@ -62,12 +56,14 @@ Cart
                 </div>
                 <div class="row border-top">
                     <div class="col m-3" style="padding-left:0;">ITEMS {{ $cart->items->count() }}</div>
-                    <div class="col m-3 text-right">{{ number_format($cart->items->sum('price'), 2) }}</div>
+                    <div class="col m-3 text-right">{{ number_format($cart->items->sum(function($item) {
+                        return $item->quantity * $item->product->price;
+                    }), 2) }}</div>
                 </div>
                 <div class="row mt-2">
                     <div class="col m-3" style="padding-left:0;">Total Price</div>
                     <div class="col m-3 text-right">&euro; {{ number_format($cart->items->sum(function($item) {
-                        return $item->quantity * $item->price;
+                        return $item->quantity * $item->product->price;
                     }), 2) }}</div>
                 </div>
                 <div class="d-grid gap-2">
