@@ -11,47 +11,43 @@ use App\Http\Controllers\cartController;
 use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\topupController;
 use App\Http\Controllers\purchasehistoryController;
+<<<<<<< HEAD
 use App\Http\Controllers\productdetailController;
 
 
+=======
+>>>>>>> origin/main-for-main
 use App\Http\Controllers\createAccountController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/login', [loginController::class, 'index'])->name('indexLogin');
 Route::post('/login', [loginController::class, 'login'])->name('login');
-
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
-// Create account
 Route::get('/createAccount', [createAccountController::class, 'index']);
 Route::post('/createAccount', [createAccountController::class, 'createAccount']);
 
+<<<<<<< HEAD
 // Product Detail
 Route::get('/product', [productdetailController::class, 'index'])->name('indexProduct');
 
 // jadi localhost/user/home buat mastiin harus login dlu sebelum masuk website
+=======
+>>>>>>> origin/main-for-main
 Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function(){
     Route::get('/home', [homeController::class, 'index'])->name('home');
     Route::get('/profile', [profileController::class, 'index'])->name('profile');
     Route::get('/updateProfile', [updateProfileController::class, 'index'])->name('updateProfile');
     Route::put('/updateProfile', [updateProfileController::class, 'update'])->name('updateProfile');
     Route::get('/changePassword', [changePasswordController::class, 'index'])->name('changePassword');
-    Route::get('/changePin', [changePinController::class, 'index'])->name('changePin');
+    
+    Route::post('/changePassword', [changePasswordController::class, 'changePassword']);
+    Route::get('/changePin', [changePinController::class, 'index'])->name('index.changePin');
+    Route::post('/changePin', [changePinController::class, 'changePin'])->name('changePin');  
+
     Route::get('/cart', [cartController::class, 'index'])->name('cart');
     Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout');
     Route::get('/topup', [topupController::class, 'index'])->name('topup');
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');
     Route::get('/about', [aboutController::class, 'index'])->name('about');
 });
-
-
-
-
-
-
-
-
-
-
