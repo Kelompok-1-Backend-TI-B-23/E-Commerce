@@ -40,7 +40,7 @@ Home Content
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{ $product->name }}</h5>
                             <!-- Product price-->
-                            <span>${{ $product->price }}</span>
+                            <span>Rp {{ $product->price }}</span>
                         </div>
                     </div>
                     <!-- Product actions-->
