@@ -16,7 +16,7 @@
                 <div class="small mb-1">SKU: BST-{{ $product->id }}</div>
                 <h1 class="display-5 fw-bolder">{{ $product->name }}</h1>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">$45.00</span>
+                    <!-- <span class="text-decoration-line-through">$45.00</span> -->
                     <span>${{ $product->price }}</span>
                 </div>
                 <p class="lead">{{ $product->description }}</p>
