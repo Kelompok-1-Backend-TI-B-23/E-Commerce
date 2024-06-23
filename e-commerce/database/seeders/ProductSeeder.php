@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
             'stock' => '20',
             'price' => 50.00,
             'image_url' =>'images/image1.png',
-            'category_id' => $shoes->id, 
+            'category' => 'Shoes', 
         ]);
 
         Product::create([
@@ -34,17 +34,47 @@ class ProductSeeder extends Seeder
             'stock' => '20',
             'price' => 75.00,
             'image_url' => 'images/image2.png',
-            'category_id' => $shoes->id,
+            'category' => 'Shoes',
         ]);
 
-        // Contoh product kategori selain Shoes
         Product::create([
             'name' => 'Baju Ijo',
             'description' => 'Description for Product 3',
+            'category' => 'Shirt', 
             'stock' => '20',
             'price' => 100.00,
             'image_url' => 'images/image3.png',
-            'category_id' => $shirt->id,
+            'category' => 'Shirt',
+        ]);
+
+        Product::create([
+            'name' => 'Baju Biru',
+            'description' => 'Description for Product 4',
+            'category' => 'Shirt', 
+            'stock' => '20',
+            'price' => 100.00,
+            'image_url' => 'images/image4.png',
+            'category' => 'Shirt',
+        ]);
+
+        Product::create([
+            'name' => 'Celana Hijau',
+            'description' => 'Description for Product 4',
+            'category' => 'Pants',
+            'stock' => '20',
+            'price' => 100.00,
+            'image_url' => 'images/image5.png',
+            'category' => 'Pants',
+        ]);
+
+        Product::create([
+            'name' => 'Celana Merah',
+            'description' => 'Description for Product 4',
+            'category' => 'Pants',
+            'stock' => '20',
+            'price' => 100.00,
+            'image_url' => 'images/image6.png',
+            'category' => 'Pants',
         ]);
     }
 }
