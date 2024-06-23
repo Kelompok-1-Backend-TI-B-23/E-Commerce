@@ -12,9 +12,9 @@ Home Content
             <form action="{{ route('products.index') }}" method="GET" class="d-flex">
                 <select name="category" class="custom-select mr-2">
                     <option value="">All Categories</option>
-                    <option value="pants" {{ request()->input('category') == 'pants' ? 'selected' : '' }}>Pants</option>
-                    <option value="shirt" {{ request()->input('category') == 'shirt' ? 'selected' : '' }}>Shirt</option>
-                    <option value="shoes" {{ request()->input('category') == 'shoes' ? 'selected' : '' }}>Shoes</option>
+                    <option value="Pants" {{ request()->input('category') == 'Pants' ? 'selected' : '' }}>Pants</option>
+                    <option value="Shirts" {{ request()->input('category') == 'Shirts' ? 'selected' : '' }}>Shirts</option>
+                    <option value="Shoes" {{ request()->input('category') == 'Shoes' ? 'selected' : '' }}>Shoes</option>
                 </select>
                 <select name="sort_by" class="custom-select ml-2">
                     <option value="name" {{ request()->input('sort_by') == 'name' ? 'selected' : '' }}>Sort by Name</option>
