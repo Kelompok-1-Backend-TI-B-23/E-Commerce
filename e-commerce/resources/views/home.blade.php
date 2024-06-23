@@ -32,17 +32,15 @@ Home Content
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-
-                    <img class="product card-img-top" src="{{asset($product->image_url)}}" alt="..." />
+                    <a href="{{ route('user.indexProduct', ['id' => $product->id]) }}">
+                        <img class="product card-img-top" src="{{ asset($product->image_url) }}" alt="..." />
+                    </a>
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder">{{$product -> name}}</h5>
-                            <small class="">{{$product -> category}}</small>
                             <br>
                             <!-- Product price-->
-                            <small>{{$product -> price}}</small>
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -58,4 +56,3 @@ Home Content
     </div>
 </div>
 
-@endsection
