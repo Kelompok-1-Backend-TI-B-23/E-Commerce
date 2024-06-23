@@ -15,7 +15,7 @@ class Product extends Model
         'price',
         'stock', 
         'image_url', 
-        'category_id'
+        'category'
     ];
 
     protected $table = 'products';
