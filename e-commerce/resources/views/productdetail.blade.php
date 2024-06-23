@@ -15,6 +15,7 @@
             <div class="col-md-6">
                 <h1 class="display-5 fw-bolder">{{ $product->name }}</h1>
                 <div class="fs-5 mb-5">
+                <h6>{{ $product->category}}</h3>
                     <!-- <span class="text-decoration-line-through">$45.00</span> -->
                     <span>Rp {{ $product->price }}</span>
                 </div>
