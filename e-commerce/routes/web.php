@@ -17,6 +17,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\createAccountController;
 use App\Http\Controllers\adminProductController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\productdetailController;
 
 //Route umum
 Route::get('/', [loginController::class, 'index'])->name('indexLogin');
@@ -37,6 +38,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::get('/updateProfile', [updateProfileController::class, 'index'])->name('updateProfile');
     Route::put('/updateProfile', [updateProfileController::class, 'update'])->name('updateProfile');
     Route::get('/changePassword', [changePasswordController::class, 'index'])->name('changePassword');
+    Route::get('/product/{id}', [productdetailController::class, 'index'])->name('indexProduct');
     Route::post('/changePassword', [changePasswordController::class, 'changePassword']);
     Route::get('/changePin', [changePinController::class, 'index'])->name('index.changePin');
     Route::post('/changePin', [changePinController::class, 'changePin'])->name('changePin');
