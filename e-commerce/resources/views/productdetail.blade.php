@@ -15,8 +15,10 @@
             <div class="col-md-6">
                 <h1 class="display-5 fw-bolder">{{ $product->name }}</h1>
                 <div class="fs-5 mb-5">
-                    <!-- <span class="text-decoration-line-through">$45.00</span> -->
-                    <span>Rp {{ $product->price }}</span>
+                <h6>{{ $product->category}}</h3>
+                <span>Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                <div class="fs-5 mt-2">
+                <h6>Stock : {{ $product->stock}}</h3>
                 </div>
                 <p class="lead">{{ $product->description }}</p>
                 <div class="d-flex">
