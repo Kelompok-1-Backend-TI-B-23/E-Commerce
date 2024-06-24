@@ -12,6 +12,7 @@ class productdetailController extends Controller
         // Mengambil data produk berdasarkan ID
         $product = Product::findOrFail($id);
 
+        // Mengambil data produk untuk related product
         $relatedProduct = Product::where('category', $product->category)->where('id', '!=', $product->id)->get();
 
         // Mengarahkan ke view 'productdetail' dengan data produk
