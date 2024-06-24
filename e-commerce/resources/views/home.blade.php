@@ -118,13 +118,18 @@ Home Content
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add To Cart</a></div>
+                        <div class="text-center">
+                            <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
+                                @csrf
+                                
+                                <button type="submit" class="btn btn-outline-dark mt-auto">Add To Cart</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- end foreach  -->
             @endforeach
-
         </div>
     </div>
 </div>
