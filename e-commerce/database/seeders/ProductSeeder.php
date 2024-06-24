@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $shoes = Category::where('name', 'Shoes');
-        $shirt = Category::where('name', 'Shirt');
+        $shirts = Category::where('name', 'Shirts');
         $pants = Category::where('name', 'Pants');
 
         // Data produk sepatu 1
@@ -60,42 +60,42 @@ class ProductSeeder extends Seeder
 
         // Data produk Baju 1
         Product::create([
-            'name' => 'JSON Sporty Green Shirt',
+            'name' => 'JSON Sporty Green Shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '21',
             'price' => 619000,
-            'image_url' => 'images/shirt/image1.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image1.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Baju 2
         Product::create([
-            'name' => 'JSON Sporty Blue Shirt',
+            'name' => 'JSON Sporty Blue Shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '22',
             'price' => 639000,
-            'image_url' => 'images/shirt/image2.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image2.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Baju 3
         Product::create([
-            'name' => 'JSON Sporty x Raymond Euginio T-shirt',
+            'name' => 'JSON Sporty x Raymond Euginio T-shirts',
             'description' => "Heavyweight French terry gives this hoodie a structured look, while fabric patches bring Nina's style to the forefront. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '23',
             'price' => 1799000,
-            'image_url' => 'images/shirt/image3.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image3.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Baju 4
         Product::create([
-            'name' => 'JSON Sporty x Eileen T-shirt',
+            'name' => 'JSON Sporty x Eileen T-shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.", 
             'stock' => '18',
             'price' => 629000,
-            'image_url' => 'images/shirt/image4.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image4.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Celana 1

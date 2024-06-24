@@ -22,11 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock')->default(0);
             $table->integer('times_bought')->default(0);
             $table->string('image_url')->nullable();
-            // $table->unsignedBigInteger('category_id');
             $table->timestamps();
-
-            // // Relasi dengan tabel categories
-            // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');  // Table name should be 'categories'
         });
     }
 
