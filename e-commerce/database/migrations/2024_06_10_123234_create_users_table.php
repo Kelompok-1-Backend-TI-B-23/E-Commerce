@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address_postal_code');
             $table->string('pin');
             $table->decimal('balance', 15, 2);
+            $table->string('role')->default('user');
             $table->timestamps();
         });
 

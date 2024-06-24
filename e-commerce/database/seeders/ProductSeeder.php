@@ -1,7 +1,9 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Category;
 
@@ -14,9 +16,29 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $shoes = Category::where('name', 'Shoes');
-        $shirt = Category::where('name', 'Shirt');
-        $pants = Category::where('name', 'Pants');
+        // Make sure storagenya ada
+        Storage::disk('public')->makeDirectory('images');
+
+        // Image yang local dari seeder
+        $images = [
+            'shoes/image1.png',
+            'shoes/image2.png',
+            'shoes/image3.png',
+            'shoes/image4.png',
+            'shirts/image1.png',
+            'shirts/image2.png',
+            'shirts/image3.png',
+            'shirts/image4.png',
+            'pants/image1.png',
+            'pants/image2.png',
+            'pants/image3.png',
+            'pants/image4.png',
+        ];
+
+        // Copy tiap image ke storage
+        foreach ($images as $image) {
+            Storage::disk('public')->put('images/' . $image, file_get_contents(public_path('images/' . $image)));
+        }
 
         // Data produk sepatu 1
         Product::create([
@@ -24,14 +46,17 @@ class ProductSeeder extends Seeder
             'description' => 'You cant stop ageing, but the Air Force 1 "Fresh" gets pretty close.Soft, textured leather helps conceal creasing and is easy to clean. The debossed branding, which replaces the woven labels, pairs with extra laces so you can eat that jam doughnut in peace. And the perforated sockliner keeps it airy and breathable. Now, theres really no reason not to rock white-on-white.',
             'stock' => '13',
             'price' => 1549000,
-            'image_url' =>'images/shoes/image1.png',
-            'category' => 'Shoes', 
+            'image_url' => 'images/shoes/image1.png',
+            'category' => 'Shoes',
         ]);
 
         // Data produk sepatu 2
         Product::create([
-            'name' => 'Nike Putih',
-            'description' => 'Description for Product 1',
+            'name' => "Nike Air Force 1 '07",
+            'description' => "Comfortable, durable and timeless—it's number 1 for a reason. The '80s construction pairs with classic colours for style that tracks whether you're on court or on the go.",
+            'stock' => '17',
+            'price' => 1329000,
+            'image_url' => 'images/shoes/image2.png',
             'category' => 'Shoes',
         ]);
 
@@ -54,42 +79,42 @@ class ProductSeeder extends Seeder
 
         // Data produk Baju 1
         Product::create([
-            'name' => 'JSON Sporty Green Shirt',
+            'name' => 'JSON Sporty Green Shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '21',
             'price' => 619000,
-            'image_url' => 'images/shirt/image1.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image1.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Baju 2
         Product::create([
-            'name' => 'JSON Sporty Blue Shirt',
+            'name' => 'JSON Sporty Blue Shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '22',
             'price' => 639000,
-            'image_url' => 'images/shirt/image2.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image2.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Baju 3
         Product::create([
-            'name' => 'JSON Sporty x Raymond Euginio T-shirt',
+            'name' => 'JSON Sporty x Raymond Euginio T-shirts',
             'description' => "Heavyweight French terry gives this hoodie a structured look, while fabric patches bring Nina's style to the forefront. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '23',
             'price' => 1799000,
-            'image_url' => 'images/shirt/image3.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image3.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Baju 4
         Product::create([
-            'name' => 'JSON Sporty x Eileen T-shirt',
-            'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.", 
+            'name' => 'JSON Sporty x Eileen T-shirts',
+            'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '18',
             'price' => 629000,
-            'image_url' => 'images/shirt/image4.png',
-            'category' => 'Shirt',
+            'image_url' => 'images/shirts/image4.png',
+            'category' => 'Shirts',
         ]);
 
         // Data produk Celana 1
@@ -136,84 +161,5 @@ class ProductSeeder extends Seeder
             'category' => 'Pants',
         ]);
 
-        Product::create([
-            'name' => 'Black Hoodie',
-            'description' => 'Description for Product 3',
-            'category' => 'Shirts',
-            'stock' => '10',
-            'price' => 60.00,
-            'image_url' => 'images/image3.png',
-            // 'category_id' => 3,
-        ]);
-        
-        Product::create([
-            'name' => 'Black Sweatpants',
-            'description' => 'Description for Product 4',
-            'category' => 'Pants',
-            'stock' => '30',
-            'price' => 70.00,
-            'image_url' => 'images/image4.png',
-
-        ]);
-        
-        Product::create([
-            'name' => 'Black T-Shirt',
-            'description' => 'Description for Product 5',
-            'category' => 'Shirts',
-            'stock' => '25',
-            'price' => 45.00,
-            'image_url' => 'images/image5.png',
-
-        ]);
-        
-        Product::create([
-            'name' => 'Brown T-Shirt',
-            'description' => 'Description for Product 6',
-            'category' => 'Shirts',
-            'stock' => '35',
-            'price' => 45.00,
-            'image_url' => 'images/image6.png',
-
-        ]);
-
-        Product::create([
-            'name' => 'Black Hoodie',
-            'description' => 'Description for Product 3',
-            'category' => 'Shirts',
-            'stock' => '10',
-            'price' => 60.00,
-            'image_url' => 'images/image3.png',
-            // 'category_id' => 3,
-        ]);
-        
-        Product::create([
-            'name' => 'Black Sweatpants',
-            'description' => 'Description for Product 4',
-            'category' => 'Pants',
-            'stock' => '30',
-            'price' => 70.00,
-            'image_url' => 'images/image4.png',
-            // 'category_id' => 4,
-        ]);
-        
-        Product::create([
-            'name' => 'Black T-Shirt',
-            'description' => 'Description for Product 5',
-            'category' => 'Shirts',
-            'stock' => '25',
-            'price' => 45.00,
-            'image_url' => 'images/image5.png',
-            // 'category_id' => 5,
-        ]);
-        
-        Product::create([
-            'name' => 'Brown T-Shirt',
-            'description' => 'Description for Product 6',
-            'category' => 'Shirts',
-            'stock' => '35',
-            'price' => 45.00,
-            'image_url' => 'images/image6.png',
-            // 'category_id' => 6,
-        ]);
     }
 }

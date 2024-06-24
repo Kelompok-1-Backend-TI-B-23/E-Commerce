@@ -17,6 +17,8 @@
                 <div class="fs-5 mb-5">
                 <h6>{{ $product->category}}</h3>
                 <span>Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                <div class="fs-5 mt-2">
+                <h6>Stock : {{ $product->stock}}</h3>
                 </div>
                 <p class="lead">{{ $product->description }}</p>
                 <div class="d-flex">

@@ -5,6 +5,24 @@
 @endsection
 
 @section('content')
+@if(session('success'))
+    <div class="modal fade" id="productAddedModal" tabindex="-1" aria-labelledby="productAddedModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productAddedModalLabel">Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ session('success') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
@@ -44,4 +62,12 @@
         </div>
     </div>
 </div>
+@if(session('success'))
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('productAddedModal'));
+        myModal.show();
+    });
+</script>
+@endif
 @endsection

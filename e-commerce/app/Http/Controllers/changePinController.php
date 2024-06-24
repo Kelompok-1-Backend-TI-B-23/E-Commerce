@@ -34,6 +34,6 @@ class changePinController extends Controller
         $user->pin = Hash::make($request->new_pin);
         $user->save();
 
-        return redirect()->route('user.home')->with('status', 'PIN has been updated successfully');
+        return redirect()->route('user.home')->with('success', 'PIN has been updated successfully');
     }
 }

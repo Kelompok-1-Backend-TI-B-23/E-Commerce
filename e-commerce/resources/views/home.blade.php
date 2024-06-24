@@ -5,65 +5,112 @@ Home Content
 @endsection
 
 @section('content')
+@if(session('success'))
+<div class="modal fade" id="productAddedModal" tabindex="-1" aria-labelledby="productAddedModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productAddedModalLabel">Status</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{ session('success') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 <div class="">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="text-center mb-4">Search and Filter Products</h2>
         <div class="input-group d-flex justify-content-center mb-4">
             <form action="{{ route('products.index') }}" method="GET" class="d-flex">
-                <select name="category" class="custom-select mr-2">
+                <select name="category" class="custom-select mx-2">
                     <option value="">All Categories</option>
-                    <option value="pants" {{ request()->input('category') == 'pants' ? 'selected' : '' }}>Pants</option>
-                    <option value="shirt" {{ request()->input('category') == 'shirt' ? 'selected' : '' }}>Shirt</option>
-                    <option value="shoes" {{ request()->input('category') == 'shoes' ? 'selected' : '' }}>Shoes</option>
+                    <option value="Pants" {{ request()->input('category') == 'Pants' ? 'selected' : '' }}>Pants</option>
+                    <option value="Shirts" {{ request()->input('category') == 'Shirts' ? 'selected' : '' }}>Shirts</option>
+                    <option value="Shoes" {{ request()->input('category') == 'Shoes' ? 'selected' : '' }}>Shoes</option>
                 </select>
-                <select name="sort_by" class="custom-select ml-2">
+                <select name="sort_by" class="custom-select mr-2">
                     <option value="name" {{ request()->input('sort_by') == 'name' ? 'selected' : '' }}>Sort by Name</option>
-                    <option value="rating" {{ request()->input('sort_by') == 'rating' ? 'selected' : '' }}>Sort by Rating</option>
-                    <option value="popularity" {{ request()->input('sort_by') == 'popularity' ? 'selected' : '' }}>Sort by Popularity</option>
                     <option value="price" {{ request()->input('sort_by') == 'price' ? 'selected' : '' }}>Sort by Price</option>
                 </select>
-                @if (request()->input('sort_by') == 'name')
-                    <select name="sort_direction" class="custom-select ml-2">
-                        <option value="asc" {{ request()->input('sort_direction') == 'asc' ? 'selected' : '' }}>A-Z</option>
-                        <option value="desc" {{ request()->input('sort_direction') == 'desc' ? 'selected' : '' }}>Z-A</option>
-                    </select>
+                @if (in_array(request()->input('sort_by'), ['name', 'price']))
+                @php
+                $sortDirection = request()->input('sort_direction', 'asc');
+                $ascSelected = $sortDirection == 'asc' ? 'selected' : '';
+                $descSelected = $sortDirection == 'desc' ? 'selected' : '';
+                @endphp
+                <select name="sort_direction" class="custom-select mx-2">
+                    @if (request()->input('sort_by') == 'name')
+                    <option value="asc" {{ $ascSelected }}>A-Z</option>
+                    <option value="desc" {{ $descSelected }}>Z-A</option>
+                    @elseif (in_array(request()->input('sort_by'), ['price']))
+                    <option value="asc" {{ $ascSelected }}>Low to High</option>
+                    <option value="desc" {{ $descSelected }}>High to Low</option>
+                    @endif
+                </select>
                 @endif
-                <button class="btn btn-dark ml-2" type="submit">Search</button>
+                <button class="btn btn-dark mx-2" type="submit">Search</button>
             </form>
         </div>
+
     </div>
 </div>
 
 <div class="">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="text-center mb-4">Products</h2>
+        @if($products->isEmpty())
+        <div class="text-center">
+            No Product Found in This Category
+        </div>
+        @else
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach ($products as $product)
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-                    <a href="{{ route('user.indexProduct', ['id' => $product->id]) }}">
-                        <img class="product card-img-top" src="{{ asset($product->image_url) }}" alt="..." />
-                    </a>
+                    <img class="product card-img-top" src="{{ asset($product->image_url) }}" alt="..." />
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{ $product->name }}</h5>
-                            <!-- Product Category-->
-                            <h6>{{ $product->category}}</h3>
+                            <small>{{ $product->category }}</small>
+                            <br>
                             <!-- Product price-->
-                            <span>Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                            <small>Rp {{ number_format($product->price, 0, ',', '.') }}</small>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add To Cart</a></div>
+                        <div class="text-center">
+                            <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
+                                @csrf
+                                
+                                <button type="submit" class="btn btn-outline-dark mt-auto">Add To Cart</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
+        @endif
     </div>
 </div>
+
+@if(session('success'))
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('productAddedModal'));
+        myModal.show();
+    });
+</script>
+@endif
 @endsection
