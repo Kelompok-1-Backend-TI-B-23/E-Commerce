@@ -19,10 +19,10 @@ class Product extends Model{
         'category_id'
     ];
 
-    public function cartItems(){
-        return $this -> hasMany(CartItem::class);
+    public function transaction()
+    {
+        return $this->belongsToMany(PurchaseHistory::class, 'transaction_details')->withPivot('quantity');
     }
-    protected $table = 'products';
 
     public function category()
     {

@@ -30,4 +30,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function history()
+    {
+        return $this->hasMany(purchaseHistory::class, 'user_id');
+    }
+
+
 }
