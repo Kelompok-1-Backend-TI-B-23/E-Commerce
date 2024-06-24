@@ -66,9 +66,16 @@ Home Content
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="text-center mb-4">Products</h2>
         @if($products->isEmpty())
-        <div class="text-center">
-            No Product Found in This Category
+        <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-light">
+                <div class="card-body text-center">
+                    <h5 class="card-title">No Product Found</h5>
+                    <p class="card-text">Sorry, there are no products available in this category.</p>
+                </div>
+            </div>
         </div>
+    </div>
         @else
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach ($products as $product)
