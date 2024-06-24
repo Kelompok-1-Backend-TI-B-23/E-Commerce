@@ -11,7 +11,6 @@ class PurchaseHistory extends Model
 
     protected $fillable = [
         'user_id',
-        'transaction_date',
         'ship_fee',
         'total_price',
     ];

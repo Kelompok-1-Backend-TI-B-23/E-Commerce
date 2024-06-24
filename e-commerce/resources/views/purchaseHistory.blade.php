@@ -1,11 +1,11 @@
 @extends ('template')
-
+ 
 @section('title')
     Purchase History
 @endsection
-
+ 
 @section('content')
-
+ 
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
@@ -20,7 +20,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Transaction ID: {{ $purchase->id }}</h5>
                                     <p class="card-text text-muted">Username: {{ $user->username }}</p>
-                                    <p class="card-text text-muted">Date: {{ $purchase->transaction_date }}</p>
+                                    <p class="card-text text-muted">Date: {{ $purchase->created_at }}</p>
                                     @foreach ($purchase->transaction as $product)
                                     <div class="card mb-3 p-2 d-flex flex-row">
                                         <div class="col-md-2">
@@ -42,8 +42,9 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    <p class="card-text">Shipping fee: {{ $purchase->ship_fee }}</p>
-                                    <p class="card-text">Transaction Price: {{ $purchase->total_price }}</p>
+                                   
+                                    <p class="card-text">Shipping fee: <small>Rp {{ number_format($purchase->ship_fee, 0, ',', '.') }}</small></p>
+                                    <p class="card-text">Transaction Price: <small>Rp {{ number_format($purchase->total_price, 0, ',', '.') }}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -53,5 +54,5 @@
             </div>
         </div>
     </div>
-
+ 
 @endsection
