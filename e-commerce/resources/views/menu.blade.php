@@ -25,11 +25,19 @@
                 @if(Auth::check())
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        @if($cart && $cart->items->isNotEmpty())
                         <a href="{{ route('user.cart') }}" class="btn btn-outline-light me-2">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                             <span class="badge bg-light text-dark ms-1 rounded-pill">{{ $cart->items->count() }}</span>
                         </a>
+                        @else
+                        <a href="{{ route('user.cart') }}" class="btn btn-outline-light me-2">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
+                        </a>
+                        @endif
                     </li>
                     <li class="nav-item">
                         <a href="/topup" class="btn btn-outline-light me-2">

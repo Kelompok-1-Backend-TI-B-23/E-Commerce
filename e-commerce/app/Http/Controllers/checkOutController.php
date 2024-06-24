@@ -6,15 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\Hash;
 
-class CheckoutController extends Controller
+class checkoutController extends Controller
 {
     protected $shippingRates = [
         'Aceh' => 25, 
         'Bali' => 15, 
         'Banten'=> 10, 
         'Bengkulu' => 20, 
-        'DKI Jakarta' => 5, 
+        'DKI Jakarta' => 5.00, 
         'DI Yogyakarta' => 10, 
         'Gorontalo' => 25, 
         'Jambi' => 20, 
@@ -62,26 +63,39 @@ class CheckoutController extends Controller
 
     public function processCheckout(Request $request)
     {
-        $cart = Cart::with('items.product')->where('user_id', auth()->id())->where('status', 'active')->first();
+        $request->validate([
+            'pin' => 'required',
+        ]);
+        $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
 
         if (!$cart || $cart->items->isEmpty()) {
-            return redirect()->route('user.cart')->with('error', 'Your cart is empty.');
+            return back()->with('error', 'Your cart is empty.');
         }
 
         $user = auth()->user();
+
         $shippingCost = $this->shippingRates[$user->address_province] ?? 0;
         $totalPrice = $cart->items->sum(function($item) {
-            return $item->quantity * $item->price;
+            return $item->quantity * $item->product->price;
         }) + $shippingCost;
-         // Process payment and create order
-        // For simplicity, we assume the payment is successful (hrs ditambahin dr saldo)
+
+        if (!Hash::check($request->pin, $user->pin)) {
+            return back()->with('error', 'PIN is incorrect.');
+        }
+        if ($user->balance < $totalPrice) {
+            return back()->with('error', 'Insufficient balance.');
+        }
+
+
+        $user->balance -= $totalPrice;
+        $user->save();
 
         $order = Order::create([
             'user_id' => auth()->id(),
             'total_price' => $totalPrice,
-            'status' => 'pending',
+            'shipping_cost' => $shippingCost,
         ]);
-
+        
         foreach ($cart->items as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -93,8 +107,7 @@ class CheckoutController extends Controller
 
         // Clear the cart
         $cart->items()->delete();
-        $cart->update(['status' => 'completed']);
 
-        return redirect()->route('user.checkout')->with('success', 'Order placed successfully!');
+        return redirect()->route('user.cart')->with('success', 'Order placed successfully!');
     }
 }
