@@ -15,13 +15,6 @@ class cartController extends Controller
         return view('cart', compact('cart'));
     }
 
-    public function showMenu()
-    {
-        $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
-        return view('menu', compact('cart'));
-    }
-
-
     public function addToCart(Request $request, $productId)
     {
         $product = Product::findOrFail($productId);
@@ -42,7 +35,7 @@ class cartController extends Controller
             $cartItem->increment('quantity');
         }
 
-        return redirect()->route('user.cart')->with('success', 'Product added to cart!');
+        return back()->with('success', 'Product added to cart!');
     }
 
     public function updateCart(Request $request, $itemId)
@@ -52,12 +45,12 @@ class cartController extends Controller
 
         if ($newQuantity < 1) {
             $cartItem->delete();
-            return redirect()->route('user.cart')->with('success', 'Item removed from cart.');
+            return back()->with('success', 'Item removed from cart.');
         }
 
         $cartItem->update(['quantity' => $newQuantity]);
 
-        return redirect()->route('user.cart')->with('success', 'Cart updated!');
+        return back()->with('success', 'Cart updated!');
     }
 
     public function removeFromCart($itemId)
@@ -65,7 +58,7 @@ class cartController extends Controller
         $cartItem = CartItem::findOrFail($itemId);
         $cartItem->delete();
 
-        return redirect()->route('user.cart')->with('success', 'Product removed from cart!');
+        return back()->with('success', 'Product removed from cart!');
     }
 }
 
