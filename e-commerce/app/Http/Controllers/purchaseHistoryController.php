@@ -25,7 +25,6 @@ class purchaseHistoryController extends Controller
 
         $history = PurchaseHistory::create([
             'user_id' => $user->id,
-            // 'transaction_id' => $request->transaction_id,
             'transaction_date' => now(),
             'ship_fee' => $request->ship_fee,
             'total_price' => $request->total_price,
@@ -38,18 +37,6 @@ class purchaseHistoryController extends Controller
             }
             return redirect('/user/purchaseHistory');
         }
-
-        // if ($history) {
-        //     foreach ($request->input('products') as $productData) {
-        //         $detail = TransactionDetails::create([
-        //             'purchase_history_id' => $history->id,
-        //             'product_id' => $productData['product_id'],
-        //             'quantity' => $productData['quantity'],
-        //         ]);
-        //     }  
-
-        //     return redirect('/user/purchaseHistory');
-        // }
     }
 
 }

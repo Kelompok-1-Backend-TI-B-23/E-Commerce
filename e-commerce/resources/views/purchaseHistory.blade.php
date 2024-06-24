@@ -19,15 +19,31 @@
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Transaction ID: {{ $purchase->id }}</h5>
+                                    <p class="card-text text-muted">Username: {{ $user->username }}</p>
                                     <p class="card-text text-muted">Date: {{ $purchase->transaction_date }}</p>
                                     @foreach ($purchase->transaction as $product)
-                                        <div class="card mb-3">
-                                            <p class="card-text">Product: {{ $product->name }} x {{ $product->pivot->quantity }}</p> 
-                                            <p class="card-text">Price: {{ number_format($product->price * $product->pivot->quantity, 2) }}</p>
+                                    <div class="card mb-3 p-2 d-flex flex-row">
+                                        <div class="col-md-2">
+                                            <img class="card-img-top mb-5 mb-md-0" src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" />
                                         </div>
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="card-title" style="font-size: 1.25rem;">{{ $product->name }}</h6>
+                                                <div></div>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p class="card-text" style="font-size: 0.75rem;">{{ $product->category }}</p>
+                                                <p class="card-text">x {{ $product->pivot->quantity }}</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div></div>
+                                                <p class="card-text">Rp {{ number_format($product->price * $product->pivot->quantity, 2) }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endforeach
                                     <p class="card-text">Shipping fee: {{ $purchase->ship_fee }}</p>
-                                    <p class="card-text">Price: {{ $purchase->total_price }}</p>
+                                    <p class="card-text">Transaction Price: {{ $purchase->total_price }}</p>
                                 </div>
                             </div>
                         </div>
