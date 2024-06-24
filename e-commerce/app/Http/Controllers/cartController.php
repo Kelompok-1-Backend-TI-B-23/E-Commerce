@@ -35,7 +35,7 @@ class cartController extends Controller
             $cartItem->increment('quantity');
         }
 
-        return back()->with('success', 'Product added to cart!');
+        return back();
     }
 
     public function updateCart(Request $request, $itemId)

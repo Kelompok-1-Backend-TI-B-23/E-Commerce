@@ -8,7 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Hash;
 
-class checkoutController extends Controller
+class CheckoutController extends Controller
 {
     protected $shippingRates = [
         'Aceh' => 25, 
@@ -45,8 +45,8 @@ class checkoutController extends Controller
         'Sumatera Barat' => 25, 
         'Sumatera Selatan' => 25, 
         'Sumatera Utara' => 25
-        // Add other provinces and their respective shipping rates
     ];
+
     public function index()
     {
         $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
@@ -66,6 +66,7 @@ class checkoutController extends Controller
         $request->validate([
             'pin' => 'required',
         ]);
+
         $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
 
         if (!$cart || $cart->items->isEmpty()) {
@@ -73,8 +74,8 @@ class checkoutController extends Controller
         }
 
         $user = auth()->user();
-
         $shippingCost = $this->shippingRates[$user->address_province] ?? 0;
+
         $totalPrice = $cart->items->sum(function($item) {
             return $item->quantity * $item->product->price;
         }) + $shippingCost;
@@ -82,10 +83,10 @@ class checkoutController extends Controller
         if (!Hash::check($request->pin, $user->pin)) {
             return back()->with('error', 'PIN is incorrect.');
         }
+
         if ($user->balance < $totalPrice) {
             return back()->with('error', 'Insufficient balance.');
         }
-
 
         $user->balance -= $totalPrice;
         $user->save();
@@ -93,9 +94,9 @@ class checkoutController extends Controller
         $order = Order::create([
             'user_id' => auth()->id(),
             'total_price' => $totalPrice,
-            'shipping_cost' => $shippingCost,
+            'shipping_cost' => $shippingCost, 
         ]);
-        
+
         foreach ($cart->items as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -108,6 +109,6 @@ class checkoutController extends Controller
         // Clear the cart
         $cart->items()->delete();
 
-        return redirect()->route('user.cart')->with('success', 'Order placed successfully!');
+        return redirect()->route('user.home')->with('success', 'Order placed successfully!');
     }
 }
