@@ -15,12 +15,6 @@ class cartController extends Controller
         return view('cart', compact('cart'));
     }
 
-    public function showMenu()
-    {
-        $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
-        return view('menu', compact('cart'));
-    }
-
 
     public function addToCart(Request $request, $productId)
     {

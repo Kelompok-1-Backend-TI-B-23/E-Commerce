@@ -39,7 +39,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::post('/cart/add/{product}', [cartController::class, 'addToCart'])->name('cart.add');
     Route::put('/cart/update/{item}', [cartController::class, 'updateCart'])->name('cart.update');
     Route::delete('/cart/remove/{item}', [cartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
     Route::get('/topup', [topupController::class, 'index'])->name('topup');
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');

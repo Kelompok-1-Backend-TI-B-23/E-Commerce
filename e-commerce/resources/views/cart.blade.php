@@ -67,7 +67,7 @@ Cart
                     }), 2) }}</div>
                 </div>
                 <div class="d-grid gap-2">
-                    <a class="btn btn-dark mt-3" href="{{ route('user.cart.index') }}">Checkout</a>
+                    <a class="btn btn-dark mt-3" href="{{ route('user.checkout') }}">Checkout</a>
                 </div>
             </div>
         </div>

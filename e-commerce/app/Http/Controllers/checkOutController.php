@@ -7,17 +7,57 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 
-class checkoutController extends Controller
+class CheckoutController extends Controller
 {
+    protected $shippingRates = [
+        'Aceh' => 25, 
+        'Bali' => 15, 
+        'Banten'=> 10, 
+        'Bengkulu' => 20, 
+        'DKI Jakarta' => 5, 
+        'DI Yogyakarta' => 10, 
+        'Gorontalo' => 25, 
+        'Jambi' => 20, 
+        'Jawa Barat' => 10,
+        'Jawa Tengah' => 10, 
+        'Jawa Timur' => 10, 
+        'Kalimantan Barat' => 20, 
+        'Kalimantan Selatan' => 20, 
+        'Kalimantan Tengah' => 20,
+        'Kalimantan Timur' => 20, 
+        'Kalimantan Utara' => 20, 
+        'Kepulauan Bangka Belitung' => 20, 
+        'Kepulauan Riau' => 20,
+        'Lampung' => 20, 
+        'Maluku' => 20, 
+        'Maluku Utara' => 20, 
+        'Nusa Tenggara Barat' => 15, 
+        'Nusa Tenggara Timur' => 15, 
+        'Papua' => 30,
+        'Papua Barat' => 30, 
+        'Riau' => 20, 
+        'Sulawesi Barat' => 25, 
+        'Sulawesi Selatan' => 25, 
+        'Sulawesi Tengah' => 25, 
+        'Sulawesi Tenggara' => 25,
+        'Sulawesi Utara' => 25, 
+        'Sumatera Barat' => 25, 
+        'Sumatera Selatan' => 25, 
+        'Sumatera Utara' => 25
+        // Add other provinces and their respective shipping rates
+    ];
     public function index()
     {
-        $cart = Cart::with('items.product')->where('user_id', auth()->id())->where('status', 'active')->first();
+        $cart = Cart::with('items.product')->where('user_id', auth()->id())->first();
 
         if (!$cart || $cart->items->isEmpty()) {
-            return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
+            return redirect()->route('user.cart')->with('error', 'Your cart is empty.');
         }
 
-        return view('checkout.index', compact('cart'));
+        $user = auth()->user();
+        $shippingCost = $this->shippingRates[$user->address_province] ?? 0;
+
+        return view('checkout', compact('cart', 'shippingCost'));
     }
 
     public function processCheckout(Request $request)
@@ -25,17 +65,20 @@ class checkoutController extends Controller
         $cart = Cart::with('items.product')->where('user_id', auth()->id())->where('status', 'active')->first();
 
         if (!$cart || $cart->items->isEmpty()) {
-            return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
+            return redirect()->route('user.cart')->with('error', 'Your cart is empty.');
         }
 
-        // Process payment and create order
+        $user = auth()->user();
+        $shippingCost = $this->shippingRates[$user->address_province] ?? 0;
+        $totalPrice = $cart->items->sum(function($item) {
+            return $item->quantity * $item->price;
+        }) + $shippingCost;
+         // Process payment and create order
         // For simplicity, we assume the payment is successful (hrs ditambahin dr saldo)
 
         $order = Order::create([
             'user_id' => auth()->id(),
-            'total_price' => $cart->items->sum(function($item) {
-                return $item->quantity * $item->price;
-            }),
+            'total_price' => $totalPrice,
             'status' => 'pending',
         ]);
 
@@ -44,7 +87,7 @@ class checkoutController extends Controller
                 'order_id' => $order->id,
                 'product_id' => $item->product_id,
                 'quantity' => $item->quantity,
-                'price' => $item->price,
+                'price' => $item->product->price,
             ]);
         }
 
@@ -52,6 +95,6 @@ class checkoutController extends Controller
         $cart->items()->delete();
         $cart->update(['status' => 'completed']);
 
-        return redirect()->route('checkout.index')->with('success', 'Order placed successfully!');
+        return redirect()->route('user.checkout')->with('success', 'Order placed successfully!');
     }
 }
