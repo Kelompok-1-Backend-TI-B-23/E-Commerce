@@ -82,7 +82,9 @@ Home Content
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-                    <img class="product card-img-top" src="{{ asset($product->image_url) }}" alt="..." />
+                    <a href="{{ route('user.indexProduct', ['id' => $product->id]) }}">
+                        <img class="product card-img-top" src="{{ asset('storage/' . $product->image_url) }}" alt="..." />
+                    </a>
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
