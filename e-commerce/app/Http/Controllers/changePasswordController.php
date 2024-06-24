@@ -32,6 +32,6 @@ class changePasswordController extends Controller
         $user->password = Hash::make($request->newPassword);
         $user->save();
 
-        return redirect()->route('user.home')->with('status', 'Password changed successfully');
+        return redirect()->route('user.home')->with('success', 'Password changed successfully');
     }
 }

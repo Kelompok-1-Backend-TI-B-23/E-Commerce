@@ -21,6 +21,7 @@ class User extends Authenticatable
         'address_province',
         'address_postal_code',
         'balance',
+        'role',
     ];
 
     protected $hidden = [
@@ -29,13 +30,4 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // public function setPasswordAttribute($value)
-    // {
-    //     $this->attributes['password'] = bcrypt($value);
-    // }
-
-    // public function setPinAttribute($value)
-    // {
-    //     $this->attributes['pin'] = bcrypt($value);
-    // }
 }

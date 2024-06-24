@@ -4,8 +4,26 @@
 Home Content
 @endsection
 
-
 @section('content')
+@if(session('success'))
+    <div class="modal fade" id="productAddedModal" tabindex="-1" aria-labelledby="productAddedModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productAddedModalLabel">Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ session('success') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 <div class="">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="text-center mb-4">Filter by Category</h2>
@@ -14,7 +32,7 @@ Home Content
                 <option selected>Choose filter</option>
                 <!-- FOREACH -->
                 <option value="MASUKIN ID VALUE">One</option>
-                <!-- END FORACH -->
+                <!-- END FOREACH -->
             </select>
             <div class="input-group-append">
                 <button class="btn btn-dark" type="button">Button</button>
@@ -32,17 +50,16 @@ Home Content
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-
-                    <img class="product card-img-top" src="{{asset($product->image_url)}}" alt="..." />
+                    <img class="product card-img-top" src="{{ asset('storage/' . $product->image_url) }}" alt="..." />
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder">{{$product -> name}}</h5>
-                            <small class="">{{$product -> category}}</small>
+                            <h5 class="fw-bolder">{{ $product->name }}</h5>
+                            <small>{{ $product->category }}</small>
                             <br>
                             <!-- Product price-->
-                            <small>{{$product -> price}}</small>
+                            <small>{{ $product->price }}</small>
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -53,9 +70,15 @@ Home Content
             </div>
             <!-- end foreach  -->
             @endforeach
-
         </div>
     </div>
 </div>
-
+@if(session('success'))
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var myModal = new bootstrap.Modal(document.getElementById('productAddedModal'));
+        myModal.show();
+    });
+</script>
+@endif
 @endsection

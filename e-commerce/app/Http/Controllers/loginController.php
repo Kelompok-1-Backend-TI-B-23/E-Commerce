@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\FailedLoginAttempt;
 
@@ -29,26 +27,28 @@ class LoginController extends Controller
         ]);
 
         $email = $request->email;
+        $password = $request->password;
         $lockout_time = now()->subMinutes(30);
 
         $user = User::where('email', $email)->first();
 
-
-        if ($user && Hash::check($request->password, $user->password)) {
+        if ($user && Hash::check($password, $user->password)) {
             FailedLoginAttempt::where('email', $email)->delete();
             Auth::login($user);
 
-            return redirect()->route('user.home');
+            // Redirect based on role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('user.home');
+            }
         } else {
             $failedAttempt = FailedLoginAttempt::where('email', $email)->first();
 
             if ($failedAttempt) {
                 if ($failedAttempt->last_attempt_at <= $lockout_time) {
-                    $failedAttempt->update([
-                        'attempt_count' => 0,
-                    ]);
+                    $failedAttempt->update(['attempt_count' => 0]);
                 }
-
                 $failedAttempt->update([
                     'attempt_count' => $failedAttempt->attempt_count + 1,
                     'last_attempt_at' => now(),
@@ -60,7 +60,7 @@ class LoginController extends Controller
                     'last_attempt_at' => now(),
                 ]);
             }
-            
+
             if ($failedAttempt && $failedAttempt->attempt_count >= 5 && $failedAttempt->last_attempt_at > $lockout_time) {
                 return back()->withErrors(['email' => 'Too many login attempts. Please try again in 30 minutes']);
             }
@@ -70,8 +70,8 @@ class LoginController extends Controller
         }
     }
 
-
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('login')->with('Anda logout');
     }
