@@ -14,10 +14,6 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $shoes = Category::where('name', 'Shoes');
-        $shirts = Category::where('name', 'Shirts');
-        $pants = Category::where('name', 'Pants');
-
         // Data produk sepatu 1
         Product::create([
             'name' => "Nike Air Force 1 '07",
