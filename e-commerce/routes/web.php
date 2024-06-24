@@ -12,6 +12,8 @@ use App\Http\Controllers\cartController;
 use App\Http\Controllers\checkoutController;
 use App\Http\Controllers\topupController;
 use App\Http\Controllers\purchasehistoryController;
+use App\Http\Controllers\ProductController;
+
 use App\Http\Controllers\createAccountController;
 use App\Http\Controllers\adminProductController;
 use App\Http\Controllers\adminController;
@@ -25,8 +27,11 @@ Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 Route::get('/createAccount', [createAccountController::class, 'index']);
 Route::post('/createAccount', [createAccountController::class, 'createAccount']);
 
-//Route user
-Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function () {
+Route::get('/home', [ProductController::class, 'index'])->name('products.index');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+// jadi localhost/user/home buat mastiin harus login dlu sebelum masuk website
+Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function(){
     Route::get('/home', [homeController::class, 'index'])->name('home');
     Route::get('/profile', [profileController::class, 'index'])->name('profile');
     Route::get('/updateProfile', [updateProfileController::class, 'index'])->name('updateProfile');
@@ -37,7 +42,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::post('/changePin', [changePinController::class, 'changePin'])->name('changePin');
     Route::get('/cart', [cartController::class, 'index'])->name('cart');
     Route::get('/checkout', [checkoutController::class, 'index'])->name('checkout');
-    Route::get('/topup', [topupController::class, 'index'])->name('topup');
+    Route::get('/topup', [topupController::class, 'index'])->name('topup.index');
+    Route::post('/topup', [topupController::class, 'topUp'])->name('topup');
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');
     Route::get('/about', [aboutController::class, 'index'])->name('about');
 });

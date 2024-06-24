@@ -29,7 +29,6 @@
                     @endif
                 </ul>
 
-                <!-- Check if user is authenticated -->
                 @if(Auth::check())
                     <!-- Check user role -->
                     @if(Auth::user()->role === 'admin')
@@ -55,7 +54,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/topup" class="btn btn-outline-light me-2">
+                                <a href="{{ route('user.topup') }}" class="btn btn-outline-light me-2">
                                     <i class="bi bi-wallet-fill me-1"></i>
                                     <small>Rp {{ Auth::user()->balance }}</small>
                                 </a>
