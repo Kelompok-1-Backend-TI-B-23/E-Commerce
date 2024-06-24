@@ -56,7 +56,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('user.topup') }}" class="btn btn-outline-light me-2">
                                     <i class="bi bi-wallet-fill me-1"></i>
-                                    <small>Rp {{ Auth::user()->balance }}</small>
+                                    <small>Rp {{ number_format(Auth::user()->balance, 0, ',', '.') }}</small>
                                 </a>
                             </li>
                             <li class="nav-item dropdown">

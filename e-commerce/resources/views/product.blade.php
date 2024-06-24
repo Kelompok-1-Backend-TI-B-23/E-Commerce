@@ -10,35 +10,33 @@ Home Content
         <h2 class="text-center mb-4">Search and Filter Products</h2>
         <div class="input-group d-flex justify-content-center mb-4">
             <form action="{{ route('products.index') }}" method="GET" class="d-flex">
-                <select name="category" class="custom-select mr-2">
+                <select name="category" class="custom-select mx-2">
                     <option value="">All Categories</option>
                     <option value="Pants" {{ request()->input('category') == 'Pants' ? 'selected' : '' }}>Pants</option>
                     <option value="Shirts" {{ request()->input('category') == 'Shirts' ? 'selected' : '' }}>Shirts</option>
                     <option value="Shoes" {{ request()->input('category') == 'Shoes' ? 'selected' : '' }}>Shoes</option>
                 </select>
-                <select name="sort_by" class="custom-select ml-2">
+                <select name="sort_by" class="custom-select mr-2">
                     <option value="name" {{ request()->input('sort_by') == 'name' ? 'selected' : '' }}>Sort by Name</option>
-                    <option value="rating" {{ request()->input('sort_by') == 'rating' ? 'selected' : '' }}>Sort by Rating</option>
-                    <option value="popularity" {{ request()->input('sort_by') == 'popularity' ? 'selected' : '' }}>Sort by Popularity</option>
                     <option value="price" {{ request()->input('sort_by') == 'price' ? 'selected' : '' }}>Sort by Price</option>
                 </select>
-                @if (in_array(request()->input('sort_by'), ['name', 'price', 'popularity', 'rating']))
-                    @php
-                        $sortDirection = request()->input('sort_direction', 'asc');
-                        $ascSelected = $sortDirection == 'asc' ? 'selected' : '';
-                        $descSelected = $sortDirection == 'desc' ? 'selected' : '';
-                    @endphp
-                    <select name="sort_direction" class="custom-select ml-2">
-                        @if (request()->input('sort_by') == 'name')
-                            <option value="asc" {{ $ascSelected }}>A-Z</option>
-                            <option value="desc" {{ $descSelected }}>Z-A</option>
-                        @elseif (in_array(request()->input('sort_by'), ['price', 'popularity', 'rating']))
-                            <option value="asc" {{ $ascSelected }}>Low to High</option>
-                            <option value="desc" {{ $descSelected }}>High to Low</option>
-                        @endif
-                    </select>
+                @if (in_array(request()->input('sort_by'), ['name', 'price']))
+                @php
+                $sortDirection = request()->input('sort_direction', 'asc');
+                $ascSelected = $sortDirection == 'asc' ? 'selected' : '';
+                $descSelected = $sortDirection == 'desc' ? 'selected' : '';
+                @endphp
+                <select name="sort_direction" class="custom-select mx-2">
+                    @if (request()->input('sort_by') == 'name')
+                    <option value="asc" {{ $ascSelected }}>A-Z</option>
+                    <option value="desc" {{ $descSelected }}>Z-A</option>
+                    @elseif (in_array(request()->input('sort_by'), ['price']))
+                    <option value="asc" {{ $ascSelected }}>Low to High</option>
+                    <option value="desc" {{ $descSelected }}>High to Low</option>
+                    @endif
+                </select>
                 @endif
-                <button class="btn btn-dark ml-2" type="submit">Search</button>
+                <button class="btn btn-dark mr-2" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -66,7 +64,7 @@ Home Content
                                 <small>{{ $product->category }}</small>
                                 <br>
                                 <!-- Product price-->
-                                <small>{{ $product->price }}</small>
+                                <small>Rp {{ number_format($product->price, 0, ',', '.') }}</small>
                             </div>
                         </div>
                         <!-- Product actions-->

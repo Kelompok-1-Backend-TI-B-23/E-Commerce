@@ -16,22 +16,29 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        // Ensure the storage directory exists
+        // Make sure storagenya ada
         Storage::disk('public')->makeDirectory('images');
 
-        // List of images to be copied
+        // Image yang local dari seeder
         $images = [
-            'image1.png',
-            'image2.png',
+            'shoes/image1.png',
+            'shoes/image2.png',
+            'shoes/image3.png',
+            'shoes/image4.png',
+            'shirts/image1.png',
+            'shirts/image2.png',
+            'shirts/image3.png',
+            'shirts/image4.png',
+            'pants/image1.png',
+            'pants/image2.png',
+            'pants/image3.png',
+            'pants/image4.png',
         ];
 
-        // Copy each image to the storage
+        // Copy tiap image ke storage
         foreach ($images as $image) {
             Storage::disk('public')->put('images/' . $image, file_get_contents(public_path('images/' . $image)));
         }
-        $shoes = Category::where('name', 'Shoes');
-        $shirts = Category::where('name', 'Shirts');
-        $pants = Category::where('name', 'Pants');
 
         // Data produk sepatu 1
         Product::create([
@@ -44,9 +51,6 @@ class ProductSeeder extends Seeder
         ]);
 
         // Data produk sepatu 2
-
-
-        // Example product data
         Product::create([
             'name' => "Nike Air Force 1 '07",
             'description' => "Comfortable, durable and timeless—it's number 1 for a reason. The '80s construction pairs with classic colours for style that tracks whether you're on court or on the go.",

@@ -31,17 +31,9 @@ class ProductController extends Controller
             case 'name':
                 $products = $products->orderBy('name', $sortDirection);
                 break;
-            case 'rating':
-                $products = $products->orderBy('rating', $sortDirection);
-                break;
-            case 'popularity':
-                $products = $products->orderBy('sold_count', $sortDirection);
-                break;
+ 
             case 'price':
                 $products = $products->orderBy('price', $sortDirection);
-                break;
-            default:
-                $products = $products->orderBy('rating', $sortDirection);
                 break;
         }
 

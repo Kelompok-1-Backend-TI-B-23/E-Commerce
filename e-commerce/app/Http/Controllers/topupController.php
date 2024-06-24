@@ -28,7 +28,7 @@ class topupController extends Controller
             $user->balance += $request->amount;
             $user->save();
 
-            return back()->with('success', 'Successfully top-up');
+            return redirect()->route('user.home')->with('success', 'Successfully top-up');
         } else {
             return back()->with('error', "PIN is incorrect");
         }

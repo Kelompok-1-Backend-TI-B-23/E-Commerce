@@ -9,15 +9,12 @@
             <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><b>Top-up Balance</b></h4>
-                    @if (session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                    @endif
                     @if (session('error'))
                         <div class="alert alert-danger">{{ session('error') }}</div>
                     @endif
                     <div class="border-top border-bottom mt-4">
                         <p class="text-muted text-center">Current Balance</p>
-                        <p class="text-center">Rp. {{ number_format($user->balance, 2) }}</p>
+                        <p class="text-center">Rp {{ number_format(Auth::user()->balance, 0, ',', '.') }}</p>
                     </div>
                     <form action="{{ route('user.topup') }}" method="POST">
                         @csrf
