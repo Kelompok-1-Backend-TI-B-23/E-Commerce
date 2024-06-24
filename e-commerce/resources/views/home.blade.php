@@ -67,15 +67,15 @@ Home Content
         <h2 class="text-center mb-4">Products</h2>
         @if($products->isEmpty())
         <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm border-light">
-                <div class="card-body text-center">
-                    <h5 class="card-title">No Product Found</h5>
-                    <p class="card-text">Sorry, there are no products available in this category.</p>
+            <div class="col-md-6">
+                <div class="card shadow-sm border-light">
+                    <div class="card-body text-center">
+                        <p class="card-text mt-2 mb-4 pb-4">Sorry, there are no products available.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
         @else
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach ($products as $product)
@@ -101,7 +101,7 @@ Home Content
                         <div class="text-center">
                             <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
                                 @csrf
-                                
+
                                 <button type="submit" class="btn btn-outline-dark mt-auto">Add To Cart</button>
                             </form>
                         </div>

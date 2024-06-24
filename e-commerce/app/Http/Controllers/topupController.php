@@ -16,10 +16,10 @@ class topupController extends Controller
 
     public function topUp(Request $request){
         $request->validate([
-            'amount' => 'required|numeric|max:2000000',
+            'amount' => 'required|numeric|max:5000000',
             'pin' => 'required'
         ], [
-            'amount.max' => 'Maximum Top-up balance is Rp. 2,000,000.'
+            'amount.max' => 'Maximum Top-up balance is Rp. 5,000,000.'
         ]);
 
         $user = Auth::user();

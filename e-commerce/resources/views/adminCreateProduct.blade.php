@@ -34,9 +34,9 @@
                 <label for="category">Category</label>
                 <select class="form-control @error('category') is-invalid @enderror" id="category" name="category">
                     <option value="">Select Category</option>
-                    <option value="shoes" {{ old('category') == 'Shoes' ? 'selected' : '' }}>Shoes</option>
-                    <option value="pants" {{ old('category') == 'Sants' ? 'selected' : '' }}>Pants</option>
-                    <option value="shirts" {{ old('category') == 'Shirts' ? 'selected' : '' }}>Shirts</option>
+                    <option value="Shoes" {{ old('category') == 'Shoes' ? 'selected' : '' }}>Shoes</option>
+                    <option value="Pants" {{ old('category') == 'Sants' ? 'selected' : '' }}>Pants</option>
+                    <option value="Shirts" {{ old('category') == 'Shirts' ? 'selected' : '' }}>Shirts</option>
                 </select>
                 @error('category')
                 <div class="invalid-feedback">{{ $message }}</div>
