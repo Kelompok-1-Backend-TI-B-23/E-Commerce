@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4"><b>Top-up Balance</b></h4>
                     @if (session('error'))
-                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    <div class="alert alert-danger">{{ session('error') }}</div>
                     @endif
                     <div class="border-top border-bottom mt-4">
                         <p class="text-muted text-center">Current Balance</p>
@@ -22,7 +22,10 @@
                             <p class="text-muted text-center">Enter Amount to Top-up</p>
                             <div class="input-group mb-3 justify-content-center">
                                 <span class="input-group-text">Rp.</span>
-                                <input type="number" name="amount" class="form-control" placeholder="0" required>
+                                <input type="number" name="amount" class="form-control @error('amount') is-invalid @enderror" placeholder="0" required value="{{ old('amount') }}">
+                                @error('amount')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="mt-4">
@@ -40,7 +43,10 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="password" name="pin" class="form-control" placeholder="PIN" required>
+                                        <input type="password" name="pin" class="form-control @error('pin') is-invalid @enderror" placeholder="PIN" required>
+                                        @error('pin')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
