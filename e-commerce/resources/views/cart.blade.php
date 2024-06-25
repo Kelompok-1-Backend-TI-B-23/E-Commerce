@@ -40,7 +40,7 @@ Cart
                         </div>
                         <div class="col align-self-center text-right text-muted">
                             @if($cart && $cart->items->isNotEmpty())
-                                {{ $cart->items->count() }} items
+                                {{ $cart->items->sum('quantity') }} items
                             @else
                                 0 items
                             @endif
@@ -92,7 +92,7 @@ Cart
                 </div>
                 @if($cart && $cart->items->isNotEmpty())
                     <div class="row border-top">
-                        <div class="col m-3" style="padding-left:0;">Total Items {{ $cart->items->count() }}</div>
+                        <div class="col m-3" style="padding-left:0;">Total Items {{ $cart->items->sum('quantity') }}</div>
                         <div class="col m-3 text-right">Rp {{ number_format($cart->items->sum(function($item) {
                             return $item->quantity * $item->product->price;
                         }), 2) }}</div>

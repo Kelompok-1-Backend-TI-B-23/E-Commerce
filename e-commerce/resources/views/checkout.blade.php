@@ -37,8 +37,8 @@
             <div class="mr-1">
                 <div class="title">
                     <div class="row">
-                        <div class="col"><h4><b>Checkout</b></h4></div>
-                        <div class="col align-self-center text-right text-muted">3 items</div>
+                        <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                        <div class="col align-self-center text-right text-muted">{{ $cart->items->sum('quantity') }} items</div>
                     </div>
                 </div>    
                  @foreach($cart->items as $item)
@@ -66,7 +66,7 @@
                     </div>
                 </div>    
                 <div class="row border-top">
-                    <div class="col m-3" style="padding-left:0;">Total Items: {{ $cart->items->count() }}</div>
+                    <div class="col m-3" style="padding-left:0;">Total Items: {{ $cart->items->sum('quantity') }}</div>
                     <div class="col m-3 text-right">Rp {{ number_format($cart->items->sum(function($item) {
                         return $item->quantity * $item->product->price;
                     }), 2) }}</div>
