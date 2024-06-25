@@ -72,4 +72,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
 
     Route::get('productEdit/{id}', [adminProductController::class, 'edit'])->name('products.edit');
     Route::put('productEdit/{id}', [adminProductController::class, 'update'])->name('products.update');
+
+    Route::delete('productDelete/{id}', [adminProductController::class, 'delete'])->name('products.delete');
 });

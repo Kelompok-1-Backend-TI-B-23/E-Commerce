@@ -64,4 +64,12 @@ class adminProductController extends Controller
 
         return redirect()->route('admin.dashboard')->with('success', 'Product updated successfully');
     }
+
+    public function delete($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Product deleted successfully');
+    }
 }

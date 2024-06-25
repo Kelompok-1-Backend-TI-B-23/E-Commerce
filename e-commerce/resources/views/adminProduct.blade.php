@@ -24,7 +24,7 @@
                                             <p class="card-text">Stock: {{ $product->stock }}</p>
                                             <div class="d-flex justify-content-between">
                                                 <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
-                                                <form action="#" method="POST">
+                                                <form action="{{ route('admin.products.delete', $product->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Delete</button>
