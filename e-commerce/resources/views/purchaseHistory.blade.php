@@ -19,7 +19,6 @@
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Transaction ID: {{ $purchase->id }}</h5>
-                                    <p class="card-text text-muted">Username: {{ $user->username }}</p>
                                     <p class="card-text text-muted">Date: {{ $purchase->created_at }}</p>
                                     @foreach ($purchase->transaction as $product)
                                     <div class="card mb-3 p-2 d-flex flex-row">
