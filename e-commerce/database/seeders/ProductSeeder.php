@@ -14,13 +14,9 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $shoes = Category::where('name', 'Shoes');
-        $shirts = Category::where('name', 'Shirts');
-        $pants = Category::where('name', 'Pants');
-
         // Data produk sepatu 1
         Product::create([
-            'name' => "Nike Air Force 1 '07",
+            'name' => "JSON Sporty Ainas 1' 07",
             'description' => 'You cant stop ageing, but the Air Force 1 "Fresh" gets pretty close.Soft, textured leather helps conceal creasing and is easy to clean. The debossed branding, which replaces the woven labels, pairs with extra laces so you can eat that jam doughnut in peace. And the perforated sockliner keeps it airy and breathable. Now, theres really no reason not to rock white-on-white.',
             'stock' => '13',
             'price' => 1549000,
@@ -30,7 +26,7 @@ class ProductSeeder extends Seeder
 
         // Data produk sepatu 2
         Product::create([
-            'name' => "Nike Air Force 1 '07",
+            'name' => "JSON Sporty Label 1'07",
             'description' => "Comfortable, durable and timeless—it's number 1 for a reason. The '80s construction pairs with classic colours for style that tracks whether you're on court or on the go.",
             'stock' => '17',
             'price' => 1329000,
@@ -40,7 +36,7 @@ class ProductSeeder extends Seeder
 
         // Data produk sepatu 3
         Product::create([
-            'name' => "Nike Air Force 1 '07 Next Nature",
+            'name' => "JSON Sporty x James Shoes",
             'description' => 'This hoops original gives "fresh air" a whole new meaning. The breezy canvas, embroidered details and a bouquet of spring colours bring summertime vibes to what you already know and love: Nike Air cushioning, classic construction and style for days.',
             'stock' => '20',
             'price' => 1529000,
@@ -50,7 +46,7 @@ class ProductSeeder extends Seeder
 
         // Data produk sepatu 4
         Product::create([
-            'name' => "Nike Air Force 1 '07 EasyOn",
+            'name' => "JSON Sporty x Stefi Lauren Shoes",
             'description' => "Quicker than 1, 2, 3—the original hoops shoe lets you get going. This version of the AF-1 features Nike EasyOn technology for a hands-free experience. The flexible heel collapses when you step in then snaps back into place, making it easy to slip the shoe on and off. Add that to its clean, crisp leather and you've got ultimate wearability. Yeah, it's everything you love and then some.",
             'stock' => '23',
             'price' => 1829000,
@@ -60,20 +56,20 @@ class ProductSeeder extends Seeder
 
         // Data produk Baju 1
         Product::create([
-            'name' => 'JSON Sporty Green Shirts',
+            'name' => 'JSON Sporty x Angel T-Shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '21',
-            'price' => 619000,
+            'price' => 399000,
             'image_url' => 'images/shirts/image1.png',
             'category' => 'Shirts',
         ]);
 
         // Data produk Baju 2
         Product::create([
-            'name' => 'JSON Sporty Blue Shirts',
+            'name' => 'JSON Sporty x Jocelyn T-Shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '22',
-            'price' => 639000,
+            'price' => 399000,
             'image_url' => 'images/shirts/image2.png',
             'category' => 'Shirts',
         ]);
@@ -83,17 +79,17 @@ class ProductSeeder extends Seeder
             'name' => 'JSON Sporty x Raymond Euginio T-shirts',
             'description' => "Heavyweight French terry gives this hoodie a structured look, while fabric patches bring Nina's style to the forefront. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.",
             'stock' => '23',
-            'price' => 1799000,
+            'price' => 399000,
             'image_url' => 'images/shirts/image3.png',
             'category' => 'Shirts',
         ]);
 
         // Data produk Baju 4
         Product::create([
-            'name' => 'JSON Sporty x Eileen T-shirts',
+            'name' => 'JSON Sporty x Eileen T-Shirts',
             'description' => "Bold, screen-printed graphics bring Nina's style to the forefront in this everyday tee. Expect a roomier fit if you typically wear women's clothing. We recommend sticking with your standard size.", 
             'stock' => '18',
-            'price' => 629000,
+            'price' => 399000,
             'image_url' => 'images/shirts/image4.png',
             'category' => 'Shirts',
         ]);
@@ -115,29 +111,29 @@ class ProductSeeder extends Seeder
             'description' => 'Elevate your wardrobe with our Classic Dark Blue Pants, a timeless addition to your apparel collection. Made from high-quality, durable fabric, these pants provide both comfort and longevity. The deep blue color exudes sophistication and versatility, making them suitable for various occasions, from casual gatherings to more formal events. With a tailored fit and a mid-rise waist, these pants offer a flattering silhouette that pairs effortlessly with any top.',
             'category' => 'Pants',
             'stock' => '20',
-            'price' => 187000,
+            'price' => 189000,
             'image_url' => 'images/pants/image2.png',
             'category' => 'Pants',
         ]);
 
         // Data produk Celana 3
         Product::create([
-            'name' => 'JSON Sporty x James Shorts',
+            'name' => 'JSON Sporty x Raymond Euginio Shorts',
             'description' => 'Refresh your look with our Bright Light Blue Pants, designed for those who love to embrace vibrant colors. These pants are crafted from soft, lightweight material, ensuring all-day comfort. The light blue shade adds a refreshing touch to your ensemble, perfect for warm days or casual outings. Featuring a relaxed fit and a drawstring waist, these pants provide a laid-back yet stylish appearance, ideal for any casual occasion.',
             'category' => 'Pants',
             'stock' => '20',
-            'price' => 179000,
+            'price' => 189000,
             'image_url' => 'images/pants/image3.png',
             'category' => 'Pants',
         ]);
 
         // Data produk Celana 4
         Product::create([
-            'name' => 'JSON Sporty x Ariana Shorts',
+            'name' => 'JSON Sporty x Eileen Shorts',
             'description' => 'Discover the perfect blend of style and comfort with our Modern Gray Pants. Made from a high-quality fabric blend, these pants are designed to offer maximum flexibility and durability. The neutral gray tone makes them a versatile addition to any wardrobe, suitable for both casual and semi-formal settings. With a comfortable fit and practical features such as an elastic waistband and multiple pockets, these pants are as functional as they are fashionable.',
             'category' => 'Pants',
             'stock' => '20',
-            'price' => 169000,
+            'price' => 189000,
             'image_url' => 'images/pants/image4.png',
             'category' => 'Pants',
         ]);
