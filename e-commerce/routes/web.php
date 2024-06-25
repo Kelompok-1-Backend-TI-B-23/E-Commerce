@@ -52,10 +52,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], fu
     Route::post('/checkout', [checkoutController::class, 'processCheckout'])->name('checkout.process');
     Route::get('/purchaseHistory', [purchasehistoryController::class, 'index'])->name('purchaseHistory');
     Route::get('/about', [aboutController::class, 'index'])->name('about');
-
-    // route sementara
-    Route::get('/buy', [purchasehistoryController::class, 'buy'])->name('buy');
-    Route::post('/store', [purchasehistoryController::class, 'store'])->name('store');
 });
 
 // Route admin
@@ -74,4 +70,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // nampilin semua transaksi oleh berbagai user
     Route::get('purchase/transaction', [adminController::class, 'indexTransaction'])->name('purchase.transaction');
 
+    Route::get('productEdit/{id}', [adminProductController::class, 'edit'])->name('products.edit');
+    Route::put('productEdit/{id}', [adminProductController::class, 'update'])->name('products.update');
+
+    Route::delete('productDelete/{id}', [adminProductController::class, 'delete'])->name('products.delete');
 });

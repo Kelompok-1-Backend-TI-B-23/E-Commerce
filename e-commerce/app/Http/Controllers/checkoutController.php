@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Models\Cart;
-use App\Models\Order;
-use App\Models\OrderItem;
 use App\Models\PurchaseHistory;
 use App\Models\TransactionDetails;
 use App\Models\Product;
@@ -82,6 +80,18 @@ class CheckoutController extends Controller
         $totalPrice = $cart->items->sum(function($item) {
             return $item->quantity * $item->product->price;
         }) + $shippingCost;
+
+        foreach ($cart->items as $item) {
+            $product = Product::findOrFail($item->product_id);
+            if ($product->stock < $item->quantity) {
+                $insufficientStockProducts[] = $product->name;
+            }
+        }
+
+        if (!empty($insufficientStockProducts)) {
+            $productNames = implode(', ', $insufficientStockProducts);
+            return back()->with('error', "Insufficient stock for: {$productNames}");
+        }
  
         if (!Hash::check($request->pin, $user->pin)) {
             return back()->with('error', 'PIN is incorrect.');
@@ -94,21 +104,6 @@ class CheckoutController extends Controller
         $user->balance -= $totalPrice;
         $user->save();
  
-        // $order = Order::create([
-        //     'user_id' => auth()->id(),
-        //     'total_price' => $totalPrice,
-        //     'shipping_cost' => $shippingCost,
-        // ]);
- 
-        // foreach ($cart->items as $item) {
-        //     OrderItem::create([
-        //         'order_id' => $order->id,
-        //         'product_id' => $item->product_id,
-        //         'quantity' => $item->quantity,
-        //         'price' => $item->product->price,
-        //     ]);
-        // }
- 
         $history = PurchaseHistory::create([
             'user_id' => auth()->id(),
             'ship_fee' => $shippingCost,
@@ -117,6 +112,9 @@ class CheckoutController extends Controller
  
         foreach ($cart->items as $item) {
             $product = Product::findOrFail($item->product_id);
+            $product->stock -= $item->quantity;
+            $product->times_bought += $item->quantity;
+            $product->save();
             $history->transaction()->attach($product, ['quantity' => $item->quantity]);
         }
  

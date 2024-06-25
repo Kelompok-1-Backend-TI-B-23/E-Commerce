@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="row justify-content-center">
+<div class="row justify-content-center min-vh-100">
     <div class="col-md-6">
         <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
             <div class="card-body text-center">

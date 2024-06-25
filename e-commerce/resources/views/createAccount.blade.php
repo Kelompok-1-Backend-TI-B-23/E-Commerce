@@ -5,7 +5,7 @@ createAccount
 @endsection
 
 @section('content')
-<div class="mw6 center pa3 sans-serif">
+<div class="mw6 center pa3 sans-serif min-vh-100">
     <h1 class="mb4">Create Account</h1>
     <form action="/createAccount" method="POST">
         @csrf

@@ -1,12 +1,12 @@
 @extends ('template')
 
 @section('title')
-    Purchase History
+    Products
 @endsection
 
 @section('content')
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center min-vh-100">
         <div class="col-md-8">
             <div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
                 <div class="card-body">
@@ -23,8 +23,8 @@
                                             <p class="card-text">Price: Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
                                             <p class="card-text">Stock: {{ $product->stock }}</p>
                                             <div class="d-flex justify-content-between">
-                                                <a href="#" class="btn btn-primary">Edit</a>
-                                                <form action="#" method="POST">
+                                                <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
+                                                <form action="{{ route('admin.products.delete', $product->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Delete</button>

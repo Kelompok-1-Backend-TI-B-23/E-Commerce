@@ -6,13 +6,8 @@
 
 @section('content')
 
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
 
-@if(session('success'))
+@if(session('error'))
 <div class="modal fade" id="productAddedModal" tabindex="-1" aria-labelledby="productAddedModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -21,7 +16,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {{ session('success') }}
+                {{ session('error') }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark" data-bs-dismiss="modal">OK</button>
@@ -31,13 +26,15 @@
 </div>
 @endif
 
-<div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light">
+
+
+<div class="card bg-light shadow p-3 mb-5 bg-body rounded m-5 border-light min-vh-100">
     <div class="row">
         <div class="col-md-8 cart">
             <div class="mr-1">
                 <div class="title">
                     <div class="row">
-                        <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                        <div class="col"><h4><b>Checkout</b></h4></div>
                         <div class="col align-self-center text-right text-muted">{{ $cart->items->sum('quantity') }} items</div>
                     </div>
                 </div>    
@@ -96,8 +93,7 @@
         </div>
     </div>
 </div>
-
-@if(session('success'))
+@if(session('error'))
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var myModal = new bootstrap.Modal(document.getElementById('productAddedModal'));

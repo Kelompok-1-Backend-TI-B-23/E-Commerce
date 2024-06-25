@@ -24,7 +24,7 @@
     </div>
 @endif
 
-<div class="container mt-4 mb-4 pt-4 pb-4">
+<div class="container mt-4 mb-4 pt-4 pb-4 min-vh-100">
     <h1 class="text-center">Admin Dashboard</h1>
     <div class="row mt-5">
         <div class="col-md-4 d-flex justify-content-center mb-4">
