@@ -1,7 +1,7 @@
 @extends ('template')
 
 @section('title')
-    Purchase History
+    Products
 @endsection
 
 @section('content')

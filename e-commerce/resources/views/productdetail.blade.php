@@ -21,11 +21,15 @@
                 <h6>Stock : {{ $product->stock}}</h3>
                 </div>
                 <p class="lead">{{ $product->description }}</p>
+                <!-- Product actions-->
                 <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>
+                    <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-dark flex-shrink-0">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add To Cart
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -59,7 +63,13 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add To Cart</a></div>
+                        <div class="text-center">
+                            <form action="{{ route('user.cart.add', $related->id) }}" method="POST">
+                                @csrf
+
+                                <button type="submit" class="btn btn-outline-dark mt-auto">Add To Cart</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

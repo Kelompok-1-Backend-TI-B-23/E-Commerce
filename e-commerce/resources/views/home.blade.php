@@ -83,7 +83,7 @@ Home Content
                 <div class="card h-100">
                     <!-- Product image-->
                     <a href="{{ route('user.indexProduct', ['id' => $product->id]) }}">
-                        <img class="product card-img-top" src="{{ asset('storage/' . $product->image_url) }}" alt="..." />
+                        <img class="product card-img-top" src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->name }}" />
                     </a>
                     <!-- Product details-->
                     <div class="card-body p-4">
