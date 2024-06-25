@@ -80,6 +80,18 @@ class CheckoutController extends Controller
         $totalPrice = $cart->items->sum(function($item) {
             return $item->quantity * $item->product->price;
         }) + $shippingCost;
+
+        foreach ($cart->items as $item) {
+            $product = Product::findOrFail($item->product_id);
+            if ($product->stock < $item->quantity) {
+                $insufficientStockProducts[] = $product->name;
+            }
+        }
+
+        if (!empty($insufficientStockProducts)) {
+            $productNames = implode(', ', $insufficientStockProducts);
+            return back()->with('error', "Insufficient stock for: {$productNames}");
+        }
  
         if (!Hash::check($request->pin, $user->pin)) {
             return back()->with('error', 'PIN is incorrect.');
@@ -100,6 +112,9 @@ class CheckoutController extends Controller
  
         foreach ($cart->items as $item) {
             $product = Product::findOrFail($item->product_id);
+            $product->stock -= $item->quantity;
+            $product->times_bought += $item->quantity;
+            $product->save();
             $history->transaction()->attach($product, ['quantity' => $item->quantity]);
         }
  
