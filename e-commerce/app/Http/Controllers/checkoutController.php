@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Models\Cart;
-use App\Models\Order;
-use App\Models\OrderItem;
 use App\Models\PurchaseHistory;
 use App\Models\TransactionDetails;
 use App\Models\Product;
@@ -93,21 +91,6 @@ class CheckoutController extends Controller
  
         $user->balance -= $totalPrice;
         $user->save();
- 
-        // $order = Order::create([
-        //     'user_id' => auth()->id(),
-        //     'total_price' => $totalPrice,
-        //     'shipping_cost' => $shippingCost,
-        // ]);
- 
-        // foreach ($cart->items as $item) {
-        //     OrderItem::create([
-        //         'order_id' => $order->id,
-        //         'product_id' => $item->product_id,
-        //         'quantity' => $item->quantity,
-        //         'price' => $item->product->price,
-        //     ]);
-        // }
  
         $history = PurchaseHistory::create([
             'user_id' => auth()->id(),
