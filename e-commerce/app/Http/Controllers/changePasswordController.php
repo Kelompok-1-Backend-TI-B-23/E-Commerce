@@ -3,21 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class changePasswordController extends Controller
+class ChangePasswordController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view("changePassword");
     }
 
-    public function changePassword(Request $request){
-        $request->validate([
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'currentPassword' => 'required',
-            'newPassword' => 'required|min:6|confirmed',
-            'newPassword_confirmation' => 'required|min:6',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/', // must contain lowercase letter
+                'regex:/[A-Z]/', // must contain uppercase letter
+                'regex:/[0-9]/', // must contain number
+                'regex:/[!@#$%^&*]/', // must contain symbol
+                'confirmed'
+            ],
+            'password_confirmation' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/', // must contain lowercase letter
+                'regex:/[A-Z]/', // must contain uppercase letter
+                'regex:/[0-9]/', // must contain number
+                'regex:/[!@#$%^&*]/' // must contain symbol
+            ]
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $user = Auth::user();
 
@@ -29,7 +53,7 @@ class changePasswordController extends Controller
             return back()->withErrors(['currentPassword' => 'Current password is incorrect']);
         }
 
-        $user->password = Hash::make($request->newPassword);
+        $user->password = Hash::make($request->password);
         $user->save();
 
         return redirect()->route('user.home')->with('success', 'Password changed successfully');

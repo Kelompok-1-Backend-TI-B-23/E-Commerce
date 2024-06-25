@@ -22,16 +22,16 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="newPassword" class="form-label">New Password</label>
-                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter new password" required>
-                                @error('newPassword')
+                                <label for="password" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password" required>
+                                @error('password')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="newPassword_confirmation" class="form-label">Confirm New Password</label>
-                                <input type="password" class="form-control" id="newPassword_confirmation" name="newPassword_confirmation" placeholder="Confirm new password" required>
-                                @error('newPassword_confirmation')
+                                <label for="password_confirmation" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm new password" required>
+                                @error('password_confirmation')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
