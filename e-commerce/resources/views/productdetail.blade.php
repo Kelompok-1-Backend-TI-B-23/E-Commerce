@@ -7,7 +7,7 @@
 @section('content')
 <!-- Product section-->
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
+    <div class="container px-4 px-lg-5 my-5 min-vh-100">
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6">
                 <img class="card-img-top mb-5 mb-md-0" src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->name }}" />
@@ -38,6 +38,7 @@
 
 
 <!-- Related items section-->
+@if($relatedProduct->isNotEmpty())
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Related products</h2>
@@ -56,7 +57,7 @@
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{ $related->name }}</h5>
                             <!-- Product Category-->
-                            <h6>{{ $related->category}}</h3>
+                            <h6>{{ $related->category }}</h6>
                             <!-- Product price-->
                             <span>Rp {{ number_format($related->price, 0, ',', '.') }}</span>
                         </div>
@@ -78,4 +79,6 @@
         </div>
     </div>
 </section>
+@endif
+
 @endsection
