@@ -38,7 +38,7 @@
             </a>
         </div>
         <div class="col-md-4 d-flex justify-content-center mb-4">
-            <a href="#" class="btn btn-dark btn-lg rounded-3" style="width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+            <a href="{{ route('admin.purchase.transaction') }}" class="btn btn-dark btn-lg rounded-3" style="width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
                 See Purchase
             </a>
         </div>

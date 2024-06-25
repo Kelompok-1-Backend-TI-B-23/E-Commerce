@@ -71,4 +71,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // nampilin daftar produk versi admin
     Route::get('dashboard/product', [adminController::class, 'indexProduct'])->name('dashboard.product');
 
+    // nampilin semua transaksi oleh berbagai user
+    Route::get('purchase/transaction', [adminController::class, 'indexTransaction'])->name('purchase.transaction');
+
 });
