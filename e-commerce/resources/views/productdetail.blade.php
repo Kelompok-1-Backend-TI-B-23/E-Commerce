@@ -48,7 +48,7 @@
                 <div class="card h-100">
                     <!-- Product image-->
                     <a href="{{ route('user.indexProduct', ['id' => $related->id]) }}">
-                        <img class="related card-img-top" src="{{ asset($related->image_url) }}" alt="..." />
+                        <img class="related card-img-top" src="{{ asset('storage/' . $related->image_url) }}" alt="..." />
                     </a>
                     <!-- Product details-->
                     <div class="card-body p-4">
