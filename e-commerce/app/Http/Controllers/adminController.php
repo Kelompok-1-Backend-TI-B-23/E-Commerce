@@ -18,10 +18,7 @@ class adminController extends Controller
 
     public function indexProduct(Request $request)
     {
-        // Mengambil semua produk dari database
-        $products = Product::all();
-
-        // Mengirimkan data produk ke view 'adminProduct'
+        $products = Product::orderBy('id', 'asc')->get();
         return view('adminProduct', compact('products'));
     }
 

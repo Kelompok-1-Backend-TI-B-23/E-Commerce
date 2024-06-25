@@ -70,4 +70,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // nampilin semua transaksi oleh berbagai user
     Route::get('purchase/transaction', [adminController::class, 'indexTransaction'])->name('purchase.transaction');
 
+    Route::get('productEdit/{id}', [adminProductController::class, 'edit'])->name('products.edit');
+    Route::put('productEdit/{id}', [adminProductController::class, 'update'])->name('products.update');
 });

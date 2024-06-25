@@ -23,7 +23,7 @@
                                             <p class="card-text">Price: Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
                                             <p class="card-text">Stock: {{ $product->stock }}</p>
                                             <div class="d-flex justify-content-between">
-                                                <a href="#" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
                                                 <form action="#" method="POST">
                                                     @csrf
                                                     @method('DELETE')
