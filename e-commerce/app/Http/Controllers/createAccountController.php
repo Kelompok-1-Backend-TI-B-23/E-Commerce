@@ -77,11 +77,11 @@ class createAccountController extends Controller
                     'confirmed'
                 ],
                 'pin' => 'required|string|digits:6|confirmed',
-                'phone_number' => 'required|string|max:15|unique:users',
+                'phone_number' => 'required|string|regex:/^[0-9]+$/|max:13|unique:users',
                 'address_street' => 'required|string|max:255',
                 'address_city' => 'required|string|max:255',
                 'address_province' => 'required|string|max:255',
-                'address_postal_code' => 'required|string|max:10',
+                'address_postal_code' => 'required|string|max:5',
             ], [
                 'username.required' => 'Username is required',
                 'username.unique' => 'Username already taken',
