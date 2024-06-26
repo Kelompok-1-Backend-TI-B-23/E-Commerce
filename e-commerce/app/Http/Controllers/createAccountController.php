@@ -77,7 +77,7 @@ class createAccountController extends Controller
                     'confirmed'
                 ],
                 'pin' => 'required|string|digits:6|confirmed',
-                'phone_number' => 'required|string|max:15|unique:users',
+                'phone_number' => 'required|string|digits_between:10,13|unique:users',
                 'address_street' => 'required|string|max:255',
                 'address_city' => 'required|string|max:255',
                 'address_province' => 'required|string|max:255',
