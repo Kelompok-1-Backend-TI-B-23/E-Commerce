@@ -36,10 +36,10 @@ class LoginController extends Controller
             FailedLoginAttempt::where('email', $email)->delete();
             Auth::login($user);
 
-            // Redirect based on role
+            // Jika user yang login adalah dengan role admin, maka akan diarahkan ke admin dashboard
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
-            } else {
+            } else { // Jika bukan role admin, akan diarahkan ke user.home
                 return redirect()->route('user.home');
             }
         } else {

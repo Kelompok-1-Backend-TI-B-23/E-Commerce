@@ -22,7 +22,7 @@ class changePinController extends Controller
 
         $user = Auth::user();
 
-        // Check if the user is authenticated
+        // Mengecek apakah user masih diauthentikasi
         if (!$user) {
             return redirect()->route('user.login')->withErrors(['error' => 'You must be logged in to change your PIN']);
         }

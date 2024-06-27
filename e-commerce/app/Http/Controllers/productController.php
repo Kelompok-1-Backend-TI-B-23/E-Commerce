@@ -11,7 +11,7 @@ class ProductController extends Controller
     {
         $query = $request->input('query');
         $category = $request->input('category');
-        $sortBy = $request->input('sort_by', 'rating'); // default : sort by rating
+        $sortBy = $request->input('sort_by', 'name'); // default : sort by name
         $sortDirection = $request->input('sort_direction', 'asc'); 
 
         $products = Product::query();

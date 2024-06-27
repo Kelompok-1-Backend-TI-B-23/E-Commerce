@@ -118,7 +118,7 @@ class CheckoutController extends Controller
             $history->transaction()->attach($product, ['quantity' => $item->quantity]);
         }
  
-        // Clear the cart
+        // Menghapus isi cart
         $cart->items()->delete();
  
         return redirect()->route('user.home')->with('success', 'Order placed successfully!');
