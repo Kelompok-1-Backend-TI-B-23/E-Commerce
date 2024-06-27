@@ -44,7 +44,6 @@
         <h2 class="fw-bolder mb-4">Related products</h2>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content">
             @foreach ($relatedProduct as $related)
-            <!-- Foreach -->
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
@@ -67,14 +66,12 @@
                         <div class="text-center">
                             <form action="{{ route('user.cart.add', $related->id) }}" method="POST">
                                 @csrf
-
                                 <button type="submit" class="btn btn-outline-dark mt-auto">Add To Cart</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end foreach  -->
             @endforeach
         </div>
     </div>

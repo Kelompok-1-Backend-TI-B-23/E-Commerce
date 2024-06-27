@@ -30,7 +30,7 @@
                 </ul>
 
                 @if(Auth::check())
-                <!-- Check user role -->
+                <!-- Mengecek role user yang sedang login -->
                 @if(Auth::user()->role === 'admin')
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -44,7 +44,7 @@
                     </li>
                 </ul>
                 @else
-                <!-- Regular user-specific features -->
+                <!-- Jika role user yang sedang login bukan admin -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a href="{{ route('user.cart') }}" class="btn btn-outline-light me-2">
@@ -79,7 +79,7 @@
                 </ul>
                 @endif
                 @else
-                <!-- If not authenticated, show login and signup buttons -->
+                <!-- Jika tidak diauthentikasi, menampilkan tombol login and signup -->
                 <ul class="navbar-nav">
                     <li class="nav-item me-2">
                         <a href="/login" class="btn btn-outline-light">Login</a>
